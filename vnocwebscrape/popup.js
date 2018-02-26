@@ -150,6 +150,13 @@ document.getElementById("startwebcrape").addEventListener('click', () => {
 			process2();
 			return true;
 		});
+		
+		$("body").contextmenu(function() {
+			clickEelement = targetElement;
+			if($(clickEelement).parents('#tbl-container').length>0) return;
+			process2();
+			return true;
+		});
 	
 		function process2()
 		{
