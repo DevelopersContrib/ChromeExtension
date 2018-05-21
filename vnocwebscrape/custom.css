@@ -1,0 +1,25 @@
+#result #fields td, th {
+    padding: 5px;
+}
+#result input {
+    padding: 5px;
+    background: #fafafa;
+    border: 1px solid #ddd;
+}
+button, input, optgroup, select, textarea {
+    color: inherit;
+    font: inherit;
+    margin: 0;
+}
+select {
+    -webkit-appearance: menulist;
+    box-sizing: border-box;
+    align-items: center;
+    white-space: pre;
+    -webkit-rtl-ordering: logical;
+    background-color: white;
+    cursor: default;
+    border-width: 1px;
+    border-style: solid;
+    border-image: initial;
+}
