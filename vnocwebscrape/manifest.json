@@ -1,10 +1,10 @@
 {
-    "name": "VNOCWebscrape",
+    "name": "VNOCTrackers",
     "version": "0.0.1",
     "manifest_version": 2,
     
 	"browser_action": {
-        "default_title": "Vnoc Web scrape",
+        "default_title": "Trackers",
         "default_popup": "popup.html"
     },
 	"permissions": [
