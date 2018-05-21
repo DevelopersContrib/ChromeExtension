@@ -14,7 +14,7 @@
 	"content_scripts" : [
 		{
 			"matches": 	["http://*/*", "https://*/*"],
-			"css":		["jquery-ui.css"],
+			"css":		["jquery-ui.css","custom.css"],
 			"js" : 		["jquery-1.12.4.js","jquery-ui.js"]
 		}
 	]
