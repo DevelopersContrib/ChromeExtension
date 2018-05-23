@@ -8,6 +8,9 @@
         "default_title": "Trackers",
         "default_popup": "popup.html"
     },
+	"icons": { "16": "icon.png",
+           "48": "icon.png",
+          "128": "icon.png" },
 	"permissions": [
     "activeTab",
     "<all_urls>"

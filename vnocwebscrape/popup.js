@@ -43,7 +43,7 @@ document.getElementById("startwebcrape").addEventListener('click', () => {
 			var tbl = ('<div id="tbl-container" class="stdform" style="margin-left:10px">'+
 			'<button class="btn btn-primary btn-proceed btn-tbl" style="display:none;color:#ffff;background: #333;margin-bottom:10px">Proceed to Research</button>'+
 			'<button style="display:none;background: #333;margin-bottom:10px;color:#ffff;" class="btn-tbl btn btn-danger  btn-remove">Delete Selected</button>'+
-			'<form id="frmprocess" method="POST" action="https://manage.vnoc.com/research/tool" target="_blank">'+
+			'<form id="frmprocess" method="POST" action="https://manage.vnoc.com/research/tool" target="_blank">'+			
 			'</form>'+
 			'<table border=1 id="result" class="stdtable" style="background: #fff;"></table>'+
 			'</div>');
@@ -73,6 +73,7 @@ document.getElementById("startwebcrape").addEventListener('click', () => {
 				var data = [];
 				var x = 0;
 				jQuery('#frmprocess').html('');
+				//jQuery('#frmprocess').append('<input name="imported_research_by" type="hidden" value="twitter" />');
 				jQuery('#result tr').not('#fields').each(function(){
 					var col = {name:'',email:'',address:'',phone:'',social:'',domains:''};
 					var hasValue = false;
@@ -177,7 +178,10 @@ document.getElementById("startwebcrape").addEventListener('click', () => {
 			var elTarget = clickEelement;
 			$('.btn-tbl').hide();
 			gIndex = '';
-			$("body").find('*').removeClass('selectedelement');
+			try{
+				//$("body").find('*').removeClass('selectedelement');
+				$('.selectedelement').removeClass('selectedelement');
+			}catch(e){}
 			var eType = $(elTarget).get(0).tagName;
 			//console.log(eType);
 			var eCls = $(elTarget).attr('class');
@@ -191,7 +195,7 @@ document.getElementById("startwebcrape").addEventListener('click', () => {
 			
 			if(eCls!='') eCls = '.'+eCls;
 			
-			console.log('element: '+eType+eCls);
+			///console.log('element: '+eType+eCls);
 			gTarget = eType+eCls;
 			//===============================================================
 			
@@ -276,7 +280,7 @@ document.getElementById("startwebcrape").addEventListener('click', () => {
 			
 			finalEl.addClass('selectedelement');
 			
-			console.log('parent: '+elements);
+			///console.log('parent: '+elements);
 			gParent = elements;
 			rowVal = [];
 			
@@ -298,7 +302,7 @@ document.getElementById("startwebcrape").addEventListener('click', () => {
 					rowVal.push(colVal);
 				}
 			});
-			console.log(rowVal);
+			//console.log(rowVal);
 			writeTable(rowVal);
 			hideLoaderVNOC();
 		}
@@ -307,8 +311,8 @@ document.getElementById("startwebcrape").addEventListener('click', () => {
 		{
 			$("body").find('*').removeClass('selectedelement');
 			
-			console.log('element: '+target);
-			console.log('parent: '+parent);
+			//console.log('element: '+target);
+			//console.log('parent: '+parent);
 			
 			$parent_ = $("body").find(parent); //find parent first;
 			
@@ -370,6 +374,7 @@ document.getElementById("startwebcrape").addEventListener('click', () => {
 		function writeTable(data) {
 			var rows = [];
 			var row;
+			showLoaderVNOC("Writing table "+data.length,'writeTable');
 			for (i = 0; i < data.length; i = i + 1) {
 				row = $('<tr />');
 				row.append($('<td />').html('<input class="chck_row" type="checkbox" value="" />'));
@@ -384,9 +389,10 @@ document.getElementById("startwebcrape").addEventListener('click', () => {
 			for(var x=0;x<rows.length;x++){
 				$('#result').append(rows[x][0].outerHTML);
 			}
-			
+			hideLoaderVNOC('writeTable');
 			$('.btn-proceed').show();
 			showFields();
+			
 		}
 
 		function fixColumns()
@@ -449,7 +455,7 @@ document.getElementById("startwebcrape").addEventListener('click', () => {
 			
 			$('.selectfields').change(function(){
 				var colIndex = $(this).parents('tr').children().index($(this).parent());
-				console.log(colIndex);
+				//console.log(colIndex);
 				$('#result tr td:nth-child('+(colIndex+1)+')').attr('data-field',$(this).val());
 			});
 			
@@ -494,6 +500,6 @@ document.getElementById("startwebcrape").addEventListener('click', () => {
         code: '(' + modifyDOM + ')();' //argument here is a string but function.toString() returns function's code
     }, (results) => {
         //Here we have just the innerHTML and not DOM structure
-        console.log(results[0]);
+        //console.log(results[0]);
     });
 });
