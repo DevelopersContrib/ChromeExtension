@@ -1,6 +1,6 @@
 document.getElementById("startwebcrape").addEventListener('click', () => {
+//document.getElementsByClassName("startwebcrape").addEventListener('click', () => {
 	function modifyDOM() {
-		
 		if($('#selector').length==0){
 			$("body").append('<div id="selector">'+
 			'<div id="selector-top"></div>'+
@@ -51,9 +51,10 @@ document.getElementById("startwebcrape").addEventListener('click', () => {
 			$(document).on('click','#tbl-container input[type=text]',function(){ this.select(); });
 			
 			if(document.getElementById('notifyvnoc')==undefined){
-				var css = '<style>.cd-popup{z-index:99999;position:fixed;left:0;top:0;height:100%;width:100%;background-color:rgba(94,110,141,0.9);opacity:0;visibility:hidden;-webkit-transition:opacity .3s 0s,visibility 0 .3s;-moz-transition:opacity .3s 0s,visibility 0 .3s;transition:opacity .3s 0s,visibility 0 .3s}.cd-popup.is-visible{opacity:1;visibility:visible;-webkit-transition:opacity .3s 0s,visibility 0 0;-moz-transition:opacity .3s 0s,visibility 0 0;transition:opacity .3s 0s,visibility 0 0}.cd-popup-container{overflow:auto;height: 70%;position:relative;margin:4em auto;background:#FFF;border-radius:.25em .25em .4em .4em;text-align:center;box-shadow:0 0 20px rgba(0,0,0,0.2);-webkit-transform:translateY(-40px);-moz-transform:translateY(-40px);-ms-transform:translateY(-40px);-o-transform:translateY(-40px);transform:translateY(-40px);-webkit-backface-visibility:hidden;-webkit-transition-property:-webkit-transform;-moz-transition-property:-moz-transform;transition-property:transform;-webkit-transition-duration:.3s;-moz-transition-duration:.3s;transition-duration:.3s}.cd-popup-container p{padding:3em 1em}.cd-popup-container .cd-buttons:after{content:"";display:table;clear:both}.cd-popup-container .cd-buttons li{float:left;width:50%}.cd-popup-container .cd-buttons a{display:block;height:60px;line-height:60px;text-transform:uppercase;color:#FFF;-webkit-transition:background-color .2s;-moz-transition:background-color .2s;transition:background-color .2s}.cd-popup-container .cd-buttons li:first-child a{background:#fc7169;border-radius:0 0 0 .25em}.no-touch .cd-popup-container .cd-buttons li:first-child a:hover{background-color:#fc8982}.cd-popup-container .cd-buttons li:last-child a{background:#b6bece;border-radius:0 0 .25em 0}.no-touch .cd-popup-container .cd-buttons li:last-child a:hover{background-color:#c5ccd8}.cd-popup-container .cd-popup-close{position:absolute;top:8px;right:8px;width:30px;height:30px}.cd-popup-container .cd-popup-close::before,.cd-popup-container .cd-popup-close::after{content:"";position:absolute;top:12px;width:14px;height:3px;background-color:#8f9cb5}.cd-popup-container .cd-popup-close::before{-webkit-transform:rotate(45deg);-moz-transform:rotate(45deg);-ms-transform:rotate(45deg);-o-transform:rotate(45deg);transform:rotate(45deg);left:8px}.cd-popup-container .cd-popup-close::after{-webkit-transform:rotate(-45deg);-moz-transform:rotate(-45deg);-ms-transform:rotate(-45deg);-o-transform:rotate(-45deg);transform:rotate(-45deg);right:8px}.is-visible .cd-popup-container{-webkit-transform:translateY(0);-moz-transform:translateY(0);-ms-transform:translateY(0);-o-transform:translateY(0);transform:translateY(0)}</style>';
+				var css = '<style>.cd-popup{z-index:99999;position:fixed;left:0;top:0;height:100%;width:300px;background-color:transparent;;opacity:0;visibility:hidden;-webkit-transition:opacity .3s 0s,visibility 0 .3s;-moz-transition:opacity .3s 0s,visibility 0 .3s;transition:opacity .3s 0s,visibility 0 .3s}.cd-popup.is-visible{opacity:1;visibility:visible;-webkit-transition:opacity .3s 0s,visibility 0 0;-moz-transition:opacity .3s 0s,visibility 0 0;transition:opacity .3s 0s,visibility 0 0}.cd-popup-container{overflow:auto;height: 70%;position:relative;margin:4em auto;background:#FFF;border-radius:.25em .25em .4em .4em;text-align:center;box-shadow:0 0 20px rgba(0,0,0,0.2);-webkit-transform:translateY(-40px);-moz-transform:translateY(-40px);-ms-transform:translateY(-40px);-o-transform:translateY(-40px);transform:translateY(-40px);-webkit-backface-visibility:hidden;-webkit-transition-property:-webkit-transform;-moz-transition-property:-moz-transform;transition-property:transform;-webkit-transition-duration:.3s;-moz-transition-duration:.3s;transition-duration:.3s}.cd-popup-container p{padding:3em 1em}.cd-popup-container .cd-buttons:after{content:"";display:table;clear:both}.cd-popup-container .cd-buttons li{float:left;width:50%}.cd-popup-container .cd-buttons a{display:block;height:60px;line-height:60px;text-transform:uppercase;color:#FFF;-webkit-transition:background-color .2s;-moz-transition:background-color .2s;transition:background-color .2s}.cd-popup-container .cd-buttons li:first-child a{background:#fc7169;border-radius:0 0 0 .25em}.no-touch .cd-popup-container .cd-buttons li:first-child a:hover{background-color:#fc8982}.cd-popup-container .cd-buttons li:last-child a{background:#b6bece;border-radius:0 0 .25em 0}.no-touch .cd-popup-container .cd-buttons li:last-child a:hover{background-color:#c5ccd8}.cd-popup-container .cd-popup-close{position:absolute;top:8px;right:8px;width:30px;height:30px}.cd-popup-container .cd-popup-close::before,.cd-popup-container .cd-popup-close::after{content:"";position:absolute;top:12px;width:14px;height:3px;background-color:#8f9cb5}.cd-popup-container .cd-popup-close::before{-webkit-transform:rotate(45deg);-moz-transform:rotate(45deg);-ms-transform:rotate(45deg);-o-transform:rotate(45deg);transform:rotate(45deg);left:8px}.cd-popup-container .cd-popup-close::after{-webkit-transform:rotate(-45deg);-moz-transform:rotate(-45deg);-ms-transform:rotate(-45deg);-o-transform:rotate(-45deg);transform:rotate(-45deg);right:8px}.is-visible .cd-popup-container{-webkit-transform:translateY(0);-moz-transform:translateY(0);-ms-transform:translateY(0);-o-transform:translateY(0);transform:translateY(0)}</style>';
 				var html = '<div id="notifyvnoc" class="cd-popup" role="alert">	<div  class="cd-popup-container"><div id="notifyvnocmsg">'+tbl+'</div><ul class="cd-buttons"></ul><a href="#0" class="cd-popup-close img-replace">&nbsp;</a></div></div>';
 				jQuery('body').append(css+html);
+				$( "#notifyvnoc" ).draggable();
 			}
 			
 			jQuery('.cd-popup').off('click').on('click', function(event){
@@ -106,6 +107,23 @@ document.getElementById("startwebcrape").addEventListener('click', () => {
 					jQuery('#frmprocess').submit();
 				}
 			});
+			
+			$(document).on("keydown", function(e) {
+				if (e.altKey) { // shift key pressed
+					var text = "";
+					if (window.getSelection) {
+						text = window.getSelection().toString();
+					} else if (document.selection && document.selection.type != "Control") {
+						text = document.selection.createRange().text;
+					}
+					if(text=='') return;
+					writeTable([[text]]);
+					jQuery('.cd-popup').addClass('is-visible');
+				}
+			});
+		}else{
+			jQuery('.cd-popup').removeClass('is-visible');
+			$('#result tr').remove();			
 		}
 		
 		$('#selector').show();
@@ -121,6 +139,7 @@ document.getElementById("startwebcrape").addEventListener('click', () => {
 		$("body").find('a').each(function(){
 			$(this).replaceWith($(this).attr('href','javascript:;').removeAttr('target').clone());
 		});
+		
 		
 		$("body").mousemove(function(event) {
 			if(event.target.id.indexOf('selector') !== -1 || event.target.tagName === 'BODY' || event.target.tagName === 'HTML') return;
@@ -157,8 +176,16 @@ document.getElementById("startwebcrape").addEventListener('click', () => {
 				height: (targetHeight + 8)
 			});			
 		});
+		
+		$("body").contextmenu(function(){
+			$("body").off('click');
+			$("body").off('mousemove');
+			$('#selector').hide();
+			$('.selectedelement').removeClass('selectedelement').addClass('selectedelementhide');
+		});
 	
 		$("body").on("click",function() {
+		
 			clickEelement = targetElement;
 			if($(clickEelement).parents('#tbl-container').length>0) return;
 			process2();
@@ -171,7 +198,7 @@ document.getElementById("startwebcrape").addEventListener('click', () => {
 			
 			return true;
 		});
-	
+
 		function process2()
 		{
 			showLoaderVNOC('Parsing contents');
@@ -384,7 +411,7 @@ document.getElementById("startwebcrape").addEventListener('click', () => {
 				rows.push(row);
 			}
 			
-			$('#result tr').remove();
+			//$('#result tr').remove();
 
 			for(var x=0;x<rows.length;x++){
 				$('#result').append(rows[x][0].outerHTML);
