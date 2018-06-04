@@ -1,5 +1,8 @@
 document.getElementById("startwebcrape").addEventListener('click', () => {
-//document.getElementsByClassName("startwebcrape").addEventListener('click', () => {
+	var elem = document.getElementById("startwebcrape");
+    if (elem.innerHTML=="Start") elem.innerHTML="End";
+    else elem.innerHTML ="Start";
+	
 	function modifyDOM() {
 		if($('#selector').length==0){
 			$("body").append('<div id="selector">'+
@@ -51,7 +54,7 @@ document.getElementById("startwebcrape").addEventListener('click', () => {
 			$(document).on('click','#tbl-container input[type=text]',function(){ this.select(); });
 			
 			if(document.getElementById('notifyvnoc')==undefined){
-				var css = '<style>.cd-popup{z-index:99999;position:fixed;left:0;top:0;height:100%;width:300px;background-color:transparent;;opacity:0;visibility:hidden;-webkit-transition:opacity .3s 0s,visibility 0 .3s;-moz-transition:opacity .3s 0s,visibility 0 .3s;transition:opacity .3s 0s,visibility 0 .3s}.cd-popup.is-visible{opacity:1;visibility:visible;-webkit-transition:opacity .3s 0s,visibility 0 0;-moz-transition:opacity .3s 0s,visibility 0 0;transition:opacity .3s 0s,visibility 0 0}.cd-popup-container{overflow:auto;height: 70%;position:relative;margin:4em auto;background:#FFF;border-radius:.25em .25em .4em .4em;text-align:center;box-shadow:0 0 20px rgba(0,0,0,0.2);-webkit-transform:translateY(-40px);-moz-transform:translateY(-40px);-ms-transform:translateY(-40px);-o-transform:translateY(-40px);transform:translateY(-40px);-webkit-backface-visibility:hidden;-webkit-transition-property:-webkit-transform;-moz-transition-property:-moz-transform;transition-property:transform;-webkit-transition-duration:.3s;-moz-transition-duration:.3s;transition-duration:.3s}.cd-popup-container p{padding:3em 1em}.cd-popup-container .cd-buttons:after{content:"";display:table;clear:both}.cd-popup-container .cd-buttons li{float:left;width:50%}.cd-popup-container .cd-buttons a{display:block;height:60px;line-height:60px;text-transform:uppercase;color:#FFF;-webkit-transition:background-color .2s;-moz-transition:background-color .2s;transition:background-color .2s}.cd-popup-container .cd-buttons li:first-child a{background:#fc7169;border-radius:0 0 0 .25em}.no-touch .cd-popup-container .cd-buttons li:first-child a:hover{background-color:#fc8982}.cd-popup-container .cd-buttons li:last-child a{background:#b6bece;border-radius:0 0 .25em 0}.no-touch .cd-popup-container .cd-buttons li:last-child a:hover{background-color:#c5ccd8}.cd-popup-container .cd-popup-close{position:absolute;top:8px;right:8px;width:30px;height:30px}.cd-popup-container .cd-popup-close::before,.cd-popup-container .cd-popup-close::after{content:"";position:absolute;top:12px;width:14px;height:3px;background-color:#8f9cb5}.cd-popup-container .cd-popup-close::before{-webkit-transform:rotate(45deg);-moz-transform:rotate(45deg);-ms-transform:rotate(45deg);-o-transform:rotate(45deg);transform:rotate(45deg);left:8px}.cd-popup-container .cd-popup-close::after{-webkit-transform:rotate(-45deg);-moz-transform:rotate(-45deg);-ms-transform:rotate(-45deg);-o-transform:rotate(-45deg);transform:rotate(-45deg);right:8px}.is-visible .cd-popup-container{-webkit-transform:translateY(0);-moz-transform:translateY(0);-ms-transform:translateY(0);-o-transform:translateY(0);transform:translateY(0)}</style>';
+				var css = '<style>.cd-popup{z-index:99999;position:fixed;left:0;top:0;height:100%;width:450px;background-color:transparent;;opacity:0;visibility:hidden;-webkit-transition:opacity .3s 0s,visibility 0 .3s;-moz-transition:opacity .3s 0s,visibility 0 .3s;transition:opacity .3s 0s,visibility 0 .3s}.cd-popup.is-visible{opacity:1;visibility:visible;-webkit-transition:opacity .3s 0s,visibility 0 0;-moz-transition:opacity .3s 0s,visibility 0 0;transition:opacity .3s 0s,visibility 0 0}.cd-popup-container{overflow:auto;height: 70%;position:relative;margin:4em auto;background:#FFF;border-radius:.25em .25em .4em .4em;text-align:center;box-shadow:0 0 20px rgba(0,0,0,0.2);-webkit-transform:translateY(-40px);-moz-transform:translateY(-40px);-ms-transform:translateY(-40px);-o-transform:translateY(-40px);transform:translateY(-40px);-webkit-backface-visibility:hidden;-webkit-transition-property:-webkit-transform;-moz-transition-property:-moz-transform;transition-property:transform;-webkit-transition-duration:.3s;-moz-transition-duration:.3s;transition-duration:.3s}.cd-popup-container p{padding:3em 1em}.cd-popup-container .cd-buttons:after{content:"";display:table;clear:both}.cd-popup-container .cd-buttons li{float:left;width:50%}.cd-popup-container .cd-buttons a{display:block;height:60px;line-height:60px;text-transform:uppercase;color:#FFF;-webkit-transition:background-color .2s;-moz-transition:background-color .2s;transition:background-color .2s}.cd-popup-container .cd-buttons li:first-child a{background:#fc7169;border-radius:0 0 0 .25em}.no-touch .cd-popup-container .cd-buttons li:first-child a:hover{background-color:#fc8982}.cd-popup-container .cd-buttons li:last-child a{background:#b6bece;border-radius:0 0 .25em 0}.no-touch .cd-popup-container .cd-buttons li:last-child a:hover{background-color:#c5ccd8}.cd-popup-container .cd-popup-close{position:absolute;top:8px;right:8px;width:30px;height:30px}.cd-popup-container .cd-popup-close::before,.cd-popup-container .cd-popup-close::after{content:"";position:absolute;top:12px;width:14px;height:3px;background-color:#8f9cb5}.cd-popup-container .cd-popup-close::before{-webkit-transform:rotate(45deg);-moz-transform:rotate(45deg);-ms-transform:rotate(45deg);-o-transform:rotate(45deg);transform:rotate(45deg);left:8px}.cd-popup-container .cd-popup-close::after{-webkit-transform:rotate(-45deg);-moz-transform:rotate(-45deg);-ms-transform:rotate(-45deg);-o-transform:rotate(-45deg);transform:rotate(-45deg);right:8px}.is-visible .cd-popup-container{-webkit-transform:translateY(0);-moz-transform:translateY(0);-ms-transform:translateY(0);-o-transform:translateY(0);transform:translateY(0)}</style>';
 				var html = '<div id="notifyvnoc" class="cd-popup" role="alert">	<div  class="cd-popup-container"><div id="notifyvnocmsg">'+tbl+'</div><ul class="cd-buttons"></ul><a href="#0" class="cd-popup-close img-replace">&nbsp;</a></div></div>';
 				jQuery('body').append(css+html);
 				$( "#notifyvnoc" ).draggable();
@@ -76,7 +79,7 @@ document.getElementById("startwebcrape").addEventListener('click', () => {
 				jQuery('#frmprocess').html('');
 				//jQuery('#frmprocess').append('<input name="imported_research_by" type="hidden" value="twitter" />');
 				jQuery('#result tr').not('#fields').each(function(){
-					var col = {name:'',email:'',address:'',phone:'',social:'',domains:''};
+					var col = {name:'',email:'',address:'',phone:'',company:'',notes:'',social:'',domains:''};
 					var hasValue = false;
 
 					jQuery(this).find('td').not(':first').each(function(){
@@ -93,6 +96,8 @@ document.getElementById("startwebcrape").addEventListener('click', () => {
 						jQuery('#frmprocess').append('<input name="people['+x+'][email]" type="hidden" value="'+col.email.replace("'",'').replace('"','')+'" />');
 						jQuery('#frmprocess').append('<input name="people['+x+'][address]" type="hidden" value="'+col.address.replace("'",'').replace('"','')+'" />');
 						jQuery('#frmprocess').append('<input name="people['+x+'][phone]" type="hidden" value="'+col.phone.replace("'",'').replace('"','')+'" />');
+						jQuery('#frmprocess').append('<input name="people['+x+'][company]" type="hidden" value="'+col.company.replace("'",'').replace('"','')+'" />');
+						jQuery('#frmprocess').append('<input name="people['+x+'][notes]" type="hidden" value="'+col.notes.replace("'",'').replace('"','')+'" />');
 						jQuery('#frmprocess').append('<input name="people['+x+'][social]" type="hidden" value="'+col.social.replace("'",'').replace('"','')+'" />');
 						jQuery('#frmprocess').append('<input name="people['+x+'][domains]" type="hidden" value="'+col.domains.replace("'",'').replace('"','')+'" />');
 						jQuery('#frmprocess').append('<input name="people['+x+'][twitter]" type="hidden" value="" />');
@@ -319,7 +324,7 @@ document.getElementById("startwebcrape").addEventListener('click', () => {
 				getValues(element);
 				var hasValue = false;
 				for(var x=0;x<colVal.length;x++){
-					if(colVal[x]!=undefined && colVal[x]!=''){
+					if(colVal[x]!=undefined && colVal[x].trim()!=''){
 						hasValue = true;
 					}
 				}
@@ -377,6 +382,7 @@ document.getElementById("startwebcrape").addEventListener('click', () => {
 					var text = element.contents().filter(function() {
 					  return this.nodeType == 3;
 					}).text();
+					text = text.trim();
 					if(text!=undefined && text!=''){
 						colVal.push(text);
 					}
@@ -385,14 +391,15 @@ document.getElementById("startwebcrape").addEventListener('click', () => {
 						//console.log(element.attr('src'));
 						var src = element.attr('src');
 						if(element.attr('src').indexOf('//')==-1){
-							src = $domain+'/'+src;
+							src = window.location.hostname+'/'+src;
 						}
-						colVal.push('<img style="width:100px" src="'+src+'" />');
+						//colVal.push('<img style="width:100px" src="'+src+'" />');
+						colVal.push(src);
 						return element.attr('src');
 					}else{
 						//console.log(element[0].innerHTML);
-						colVal.push(element[0].innerHTML);
-						return element[0].innerHTML;
+						colVal.push(element[0].innerHTML.trim());
+						return element[0].innerHTML.trim();
 					}
 				}
 			}
@@ -464,6 +471,8 @@ document.getElementById("startwebcrape").addEventListener('click', () => {
 				'<option value="email">Email</option>'+
 				'<option value="address">Address</option>'+
 				'<option value="phone">Phone Number</option>'+
+				'<option value="company">Company</option>'+
+				'<option value="notes">Notes</option>'+
 				'<option value="social">Social Accounts</option>'+
 				'<option value="domains">Number Of Domains</option>'+
 				'</select>';
@@ -521,12 +530,29 @@ document.getElementById("startwebcrape").addEventListener('click', () => {
 		
         return document.body.innerHTML;
     }
+	
+	function endModifyDOM(){
+		$("body").off('click');
+		$("body").off('mousemove');
+		$('#selector').hide();
+		$('.selectedelement').removeClass('selectedelement').addClass('selectedelementhide');
+	}
 
-    //We have permission to access the activeTab, so we can call chrome.tabs.executeScript:
-    chrome.tabs.executeScript({
-        code: '(' + modifyDOM + ')();' //argument here is a string but function.toString() returns function's code
-    }, (results) => {
-        //Here we have just the innerHTML and not DOM structure
-        //console.log(results[0]);
-    });
+	if (elem.innerHTML=="End"){
+		//We have permission to access the activeTab, so we can call chrome.tabs.executeScript:
+		chrome.tabs.executeScript({
+			code: '(' + modifyDOM + ')();' //argument here is a string but function.toString() returns function's code
+		}, (results) => {
+			//Here we have just the innerHTML and not DOM structure
+			//console.log(results[0]);
+		});
+	}else{
+		//We have permission to access the activeTab, so we can call chrome.tabs.executeScript:
+		chrome.tabs.executeScript({
+			code: '(' + endModifyDOM + ')();' //argument here is a string but function.toString() returns function's code
+		}, (results) => {
+			//Here we have just the innerHTML and not DOM structure
+			//console.log(results[0]);
+		});
+	}
 });
