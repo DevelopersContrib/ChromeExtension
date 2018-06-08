@@ -8,18 +8,25 @@
         "default_title": "Trackers",
         "default_popup": "popup.html"
     },
-	"icons": { "16": "icon.png",
+	"icons": { 
+		"16": "icon.png",
         "48": "icon.png",
-        "128": "icon.png" },
-		"permissions": [
+        "128": "icon.png" 
+	},
+	"permissions": [
 		"activeTab",
-		"<all_urls>"
+		"<all_urls>",
+		"storage","alarms", "notifications"
 	],
+	"background": {
+		"scripts": ["background.js"],
+		"persistent": false
+	  },
 	"content_scripts" : [
 		{
 			"matches": 	["http://*/*", "https://*/*"],
 			"css":		["custom.css"],
-			"js" : 		["jquery-3.3.1.js","jquery-ui.js"]
+			"js" : 		["jquery-3.3.1.js","jquery-ui.js","content.js"]
 		}
 	]
 }
