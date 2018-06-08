@@ -29,7 +29,22 @@ select {
     border-style: solid;
     border-image: initial;
 }
-
+#container_result {
+	width: 760px;
+    overflow-x: scroll;
+}
+#tbl-container .btn {
+	color: rgb(255, 255, 255);
+    background: rgb(59, 90, 130) !important;    
+    border: none;
+    border-radius: 4px;
+    padding: 10px 15px;
+	margin-bottom: 10px;
+    margin-top: 10px;
+	margin-right: 5px;
+    font-size: 14px;
+    
+}
 .tracker-box {    
     width: auto;
     text-align: center;
