@@ -31,9 +31,9 @@ document.getElementById("startwebcrape").addEventListener('click', () => {
 
 function setTable(info) {
 	if(info == undefined) window.location.reload();
-	document.getElementById('container_result').innerHTML =  info;
-	if($('#result tr').length>1) $('#container_result').show();
-	else $('#container_result').hide();
+	document.getElementById('trkr-container_result').innerHTML =  info;
+	if($('#trkr-result tr').length>1) $('#trkr-container_result').show();
+	else $('#trkr-container_result').hide();
 }
 
 window.addEventListener('DOMContentLoaded', function () {
@@ -43,16 +43,16 @@ window.addEventListener('DOMContentLoaded', function () {
 });
 
 $(document).ready(function() {
-    $(document).on('click','#tbl-container input[type=text]',function(){ this.select(); });
+    $(document).on('click','#trkr-tbl-container input[type=text]',function(){ this.select(); });
 
-	$(document).on('click','.btn-remove',function(){
-		jQuery('.chck_row:checked').parents('tr').remove();
-		jQuery('.btn-remove').hide();
+	$(document).on('click','.trkr-btn-remove',function(){
+		jQuery('.trkr-chck_row:checked').parents('tr').remove();
+		jQuery('.trkr-btn-remove').hide();
 		//showFields();
 		
 		chrome.tabs.query({active: true,currentWindow: true }, function (tabs) {
-			chrome.tabs.sendMessage(tabs[0].id,{from: 'popup', subject: 'updateContentTable',html:$('div#tbl-container')[0].outerHTML});
-			var _rows = $('#tbl-container tr').length - 1;
+			chrome.tabs.sendMessage(tabs[0].id,{from: 'popup', subject: 'updateContentTable',html:$('div#trkr-tbl-container')[0].outerHTML});
+			var _rows = $('#trkr-tbl-container tr').length - 1;
 			chrome.storage.sync.get(['count'], function(item) {
 				var obj = item.count;
 
@@ -66,11 +66,11 @@ $(document).ready(function() {
 		});
 	});
 	
-	$(document).on('click','.btn-proceed',function(){
+	$(document).on('click','.trkr-btn-proceed',function(){
 		var data = [];
 		var x = 0;
-		jQuery('#frmprocess').html('');
-		jQuery('#result tr').not('#fields').each(function(){
+		jQuery('#trkr-frmprocess').html('');
+		jQuery('#trkr-result tr').not('#fields').each(function(){
 			var col = {name:'',email:'',address:'',phone:'',company:'',notes:'',social:'',domains:''};
 			var hasValue = false;
 
@@ -84,47 +84,47 @@ $(document).ready(function() {
 			
 			if(hasValue){
 				data.push(col);
-				jQuery('#frmprocess').append('<input name="people['+x+'][name]" type="hidden" value="'+col.name.replace("'",'').replace('"','')+'" />');
-				jQuery('#frmprocess').append('<input name="people['+x+'][email]" type="hidden" value="'+col.email.replace("'",'').replace('"','')+'" />');
-				jQuery('#frmprocess').append('<input name="people['+x+'][address]" type="hidden" value="'+col.address.replace("'",'').replace('"','')+'" />');
-				jQuery('#frmprocess').append('<input name="people['+x+'][phone]" type="hidden" value="'+col.phone.replace("'",'').replace('"','')+'" />');
-				jQuery('#frmprocess').append('<input name="people['+x+'][company]" type="hidden" value="'+col.company.replace("'",'').replace('"','')+'" />');
-				jQuery('#frmprocess').append('<input name="people['+x+'][notes]" type="hidden" value="'+col.notes.replace("'",'').replace('"','')+'" />');
-				jQuery('#frmprocess').append('<input name="people['+x+'][social]" type="hidden" value="'+col.social.replace("'",'').replace('"','')+'" />');
-				jQuery('#frmprocess').append('<input name="people['+x+'][domains]" type="hidden" value="'+col.domains.replace("'",'').replace('"','')+'" />');
-				jQuery('#frmprocess').append('<input name="people['+x+'][twitter]" type="hidden" value="" />');
+				jQuery('#trkr-frmprocess').append('<input name="people['+x+'][name]" type="hidden" value="'+col.name.replace("'",'').replace('"','')+'" />');
+				jQuery('#trkr-frmprocess').append('<input name="people['+x+'][email]" type="hidden" value="'+col.email.replace("'",'').replace('"','')+'" />');
+				jQuery('#trkr-frmprocess').append('<input name="people['+x+'][address]" type="hidden" value="'+col.address.replace("'",'').replace('"','')+'" />');
+				jQuery('#trkr-frmprocess').append('<input name="people['+x+'][phone]" type="hidden" value="'+col.phone.replace("'",'').replace('"','')+'" />');
+				jQuery('#trkr-frmprocess').append('<input name="people['+x+'][company]" type="hidden" value="'+col.company.replace("'",'').replace('"','')+'" />');
+				jQuery('#trkr-frmprocess').append('<input name="people['+x+'][notes]" type="hidden" value="'+col.notes.replace("'",'').replace('"','')+'" />');
+				jQuery('#trkr-frmprocess').append('<input name="people['+x+'][social]" type="hidden" value="'+col.social.replace("'",'').replace('"','')+'" />');
+				jQuery('#trkr-frmprocess').append('<input name="people['+x+'][domains]" type="hidden" value="'+col.domains.replace("'",'').replace('"','')+'" />');
+				jQuery('#trkr-frmprocess').append('<input name="people['+x+'][twitter]" type="hidden" value="" />');
 				x++;
 			}
 		});
 		
-		if(jQuery('#frmprocess').html()==''){
+		if(jQuery('#trkr-frmprocess').html()==''){
 			alert('Please select column for research');
 			return false;
 		}else{
-			jQuery('#frmprocess').submit();
+			jQuery('#trkr-frmprocess').submit();
 		}
 	});
 	
-	$(document).on('change','.selectfields',function(){
+	$(document).on('change','.trkr-selectfields',function(){
 		var colIndex = $(this).parents('tr').children().index($(this).parent());
-		$('#result tr td:nth-child('+(colIndex+1)+')').attr('data-field',$(this).val());
+		$('#trkr-result tr td:nth-child('+(colIndex+1)+')').attr('data-field',$(this).val());
 	});
 	
 	$(document).on('click','.chckall',function(){
-		$('.chck_row').prop('checked',$(this).is(':checked'));
+		$('.trkr-chck_row').prop('checked',$(this).is(':checked'));
 		if($(this).is(':checked')){
-			$('.btn-remove').show();
+			$('.trkr-btn-remove').show();
 		}else{
-			$('.btn-remove').hide();
+			$('.trkr-btn-remove').hide();
 		}
 	});
 	
-	$(document).on('click','.chck_row',function(){
-		$('.chckall').prop('checked',$('.chck_row').length==$('.chck_row:checked').length);
+	$(document).on('click','.trkr-chck_row',function(){
+		$('.chckall').prop('checked',$('.trkr-chck_row').length==$('.trkr-chck_row:checked').length);
 		if($(this).is(':checked')){
-			$('.btn-remove').show();
+			$('.trkr-btn-remove').show();
 		}else{
-			if($('.chck_row:checked').length==0) $('.btn-remove').hide();
+			if($('.trkr-chck_row:checked').length==0) $('.trkr-btn-remove').hide();
 		}
 	});
 	

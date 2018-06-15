@@ -1,13 +1,13 @@
-//jQuery('.cd-popup').removeClass('is-visible');
+//jQuery('.trkr-popup').removeClass('is-visible');
 
-$('#selector').show();
-$('.selectedelementhide').removeClass('selectedelementhide').addClass('selectedelement');
+$('#trkr-selector').show();
+$('.selectedelementhide').removeClass('selectedelementhide').addClass('trkr-selectedelement');
 
 var elements = {
-	top: $("body").find('#selector-top'),
-	left: $("body").find('#selector-left'),
-	right: $("body").find('#selector-right'),
-	bottom: $("body").find('#selector-bottom')
+	top: $("body").find('#trkr-selector-top'),
+	left: $("body").find('#trkr-selector-left'),
+	right: $("body").find('#trkr-selector-right'),
+	bottom: $("body").find('#trkr-selector-bottom')
 };
 
 $("body").find('a').each(function(){
@@ -15,7 +15,7 @@ $("body").find('a').each(function(){
 });
 
 $("body").mousemove(function(event) {
-	if(event.target.id.indexOf('selector') !== -1 || event.target.tagName === 'BODY' || event.target.tagName === 'HTML') return;
+	if(event.target.id.indexOf('trkr-selector') !== -1 || event.target.tagName === 'BODY' || event.target.tagName === 'HTML') return;
 	var $target = $(event.target);
 	
 	targetElement = $target;
@@ -23,7 +23,7 @@ $("body").mousemove(function(event) {
 	targetHeight = targetOffset.height,
 	targetWidth  = targetOffset.width;
 		
-	if($(targetElement).parents('#tbl-container').length>0) return;
+	if($(targetElement).parents('#trkr-tbl-container').length>0) return;
 	
 	var elementType = $($target).get(0).tagName;
 	
@@ -52,8 +52,8 @@ $("body").mousemove(function(event) {
 $("body").contextmenu(function(){
 	$("body").off('click');
 	$("body").off('mousemove');
-	$('#selector').hide();
-	$('.selectedelement').removeClass('selectedelement').addClass('selectedelementhide');
+	$('#trkr-selector').hide();
+	$('.trkr-selectedelement').removeClass('trkr-selectedelement').addClass('selectedelementhide');
 	chrome.runtime.sendMessage({
 		from:    'startSelect',
 		subject: 'Cancel'
@@ -61,16 +61,16 @@ $("body").contextmenu(function(){
 });
 
 $("body").on("click",function() {
-	$('#result tr').remove();
+	$('#trkr-result tr').remove();
 	clickEelement = targetElement;
-	if($(clickEelement).parents('#tbl-container').length>0) return;
+	if($(clickEelement).parents('#trkr-tbl-container').length>0) return;
 	process2();
 
-	///jQuery('.cd-popup').addClass('is-visible');
+	///jQuery('.trkr-popup').addClass('is-visible');
 	$("body").off('click');
 	$("body").off('mousemove');
-	$('#selector').hide();
-	$('.selectedelement').removeClass('selectedelement').addClass('selectedelementhide');	
+	$('#trkr-selector').hide();
+	$('.trkr-selectedelement').removeClass('trkr-selectedelement').addClass('selectedelementhide');	
 	return true;
 });
 
@@ -78,11 +78,11 @@ function process2()
 {
 	showLoaderVNOC('Parsing contents');
 	var elTarget = clickEelement;
-	$('.btn-tbl').hide();
+	$('.trkr-btn-tbl').hide();
 	gIndex = '';
 	try{
-		//$("body").find('*').removeClass('selectedelement');
-		$('.selectedelement').removeClass('selectedelement');
+		//$("body").find('*').removeClass('trkr-selectedelement');
+		$('.trkr-selectedelement').removeClass('trkr-selectedelement');
 	}catch(e){}
 	var eType = $(elTarget).get(0).tagName;
 	//console.log(eType);
@@ -180,13 +180,13 @@ function process2()
 		finalEl = $parent_;
 	}
 	
-	finalEl.addClass('selectedelement');
+	finalEl.addClass('trkr-selectedelement');
 	
 	///console.log('parent: '+elements);
 	gParent = elements;
 	rowVal = [];
 	
-	finalEl = $('.selectedelement');
+	finalEl = $('.trkr-selectedelement');
 	
 	finalEl.each(function(){
 		colVal = [];
