@@ -9,9 +9,9 @@ chrome.runtime.sendMessage({
 chrome.runtime.onMessage.addListener(function (msg, sender, response) {
 	if ((msg.from === 'popup') && (msg.subject === 'getTable')) {
 		//document.querySelectorAll('input').length;
-		response($('div#tbl-container')[0].outerHTML);
+		response($('div#trkr-tbl-container')[0].outerHTML);
 	}else if ((msg.from === 'popup') && (msg.subject === 'updateContentTable')) {
-		$('div#tbl-container').replaceWith(msg.html);
+		$('div#trkr-tbl-container').replaceWith(msg.html);
 	}
 });
 
@@ -19,25 +19,25 @@ chrome.runtime.onMessage.addListener(function (msg, sender, response) {
 
 
 
-if($('#selector').length==0){
-	$("body").append('<div id="selector">'+
-	'<div id="selector-top"></div>'+
-	'<div id="selector-left"></div>'+
-	'<div id="selector-right"></div>'+
-	'<div id="selector-bottom"></div>'+
+if($('#trkr-selector').length==0){
+	$("body").append('<div id="trkr-selector">'+
+	'<div id="trkr-selector-top"></div>'+
+	'<div id="trkr-selector-left"></div>'+
+	'<div id="trkr-selector-right"></div>'+
+	'<div id="trkr-selector-bottom"></div>'+
 	'</div>');
 	
 	var $head = $("head"); 
 	var css = '<style>'+
 	
-	'#selector-top, #selector-bottom {'+
+	'#trkr-selector-top, #trkr-selector-bottom {'+
 		'background: blue;'+
 		'height:3px;'+
 		'position: fixed;'+
 		'transition:all 300ms ease;'+
 		'z-index:99999;'+
 	'}'+
-	'#selector-left, #selector-right {'+
+	'#trkr-selector-left, #trkr-selector-right {'+
 		'background: blue;'+
 		'width:3px;'+
 		'position: fixed;'+
@@ -45,11 +45,11 @@ if($('#selector').length==0){
 		'z-index:99999;'+
 	'}'+
 
-	'.n{'+
+	/*'.n{'+
 	 '-webkit-transform: scale(3) translateX(100px)'+
-	'}'+
+	'}'+*/
 
-	'.selectedelement {'+
+	'.trkr-selectedelement {'+
 		'border-width: 2px !important;'+
 		'border-color: red !important;'+
 		'border-style: solid !important;'+
@@ -58,25 +58,25 @@ if($('#selector').length==0){
 	'</style>';
 	$head.append(css);
 	
-	var tbl = ('<div id="tbl-container" class="stdform" style="margin-left:10px">'+
-	'<button class="btn btn-primary btn-proceed btn-tbl" style="display:none;color:#ffff;background: #333;margin-bottom:10px">Proceed to Research</button>'+
-	'<button style="display:none;background: #333;margin-bottom:10px;color:#ffff;" class="btn-tbl btn btn-danger  btn-remove">Delete Selected</button>'+
-	'<form id="frmprocess" method="POST" action="https://manage.vnoc.com/research/tool" target="_blank">'+			
+	var tbl = ('<div id="trkr-tbl-container" class="stdform" style="margin-left:10px">'+
+	'<button class="btn btn-primary trkr-btn-proceed trkr-btn-tbl" style="display:none;color:#ffff;background: #333;margin-bottom:10px">Proceed to Research</button>'+
+	'<button style="display:none;background: #333;margin-bottom:10px;color:#ffff;" class="trkr-btn-tbl btn btn-danger  trkr-btn-remove">Delete Selected</button>'+
+	'<form id="trkr-frmprocess" method="POST" action="https://manage.vnoc.com/research/tool" target="_blank">'+			
 	'</form>'+
-	'<table border=1 id="result" class="stdtable" style="background: #fff;"></table>'+
+	'<table border=1 id="trkr-result" class="stdtable" style="background: #fff;"></table>'+
 	'</div>');
 	
 	
 	
 	if(document.getElementById('notifyvnoc')==undefined){
-		var css = '<style>.cd-popup{z-index:99999;position:fixed;left:0;top:0;height:100%;width:450px;background-color:transparent;;opacity:0;visibility:hidden;-webkit-transition:opacity .3s 0s,visibility 0 .3s;-moz-transition:opacity .3s 0s,visibility 0 .3s;transition:opacity .3s 0s,visibility 0 .3s}.cd-popup.is-visible{opacity:1;visibility:visible;-webkit-transition:opacity .3s 0s,visibility 0 0;-moz-transition:opacity .3s 0s,visibility 0 0;transition:opacity .3s 0s,visibility 0 0}.cd-popup-container{overflow:auto;height: 70%;position:relative;margin:4em auto;background:#FFF;border-radius:.25em .25em .4em .4em;text-align:center;box-shadow:0 0 20px rgba(0,0,0,0.2);-webkit-transform:translateY(-40px);-moz-transform:translateY(-40px);-ms-transform:translateY(-40px);-o-transform:translateY(-40px);transform:translateY(-40px);-webkit-backface-visibility:hidden;-webkit-transition-property:-webkit-transform;-moz-transition-property:-moz-transform;transition-property:transform;-webkit-transition-duration:.3s;-moz-transition-duration:.3s;transition-duration:.3s}.cd-popup-container p{padding:3em 1em}.cd-popup-container .cd-buttons:after{content:"";display:table;clear:both}.cd-popup-container .cd-buttons li{float:left;width:50%}.cd-popup-container .cd-buttons a{display:block;height:60px;line-height:60px;text-transform:uppercase;color:#FFF;-webkit-transition:background-color .2s;-moz-transition:background-color .2s;transition:background-color .2s}.cd-popup-container .cd-buttons li:first-child a{background:#fc7169;border-radius:0 0 0 .25em}.no-touch .cd-popup-container .cd-buttons li:first-child a:hover{background-color:#fc8982}.cd-popup-container .cd-buttons li:last-child a{background:#b6bece;border-radius:0 0 .25em 0}.no-touch .cd-popup-container .cd-buttons li:last-child a:hover{background-color:#c5ccd8}.cd-popup-container .cd-popup-close{position:absolute;top:8px;right:8px;width:30px;height:30px}.cd-popup-container .cd-popup-close::before,.cd-popup-container .cd-popup-close::after{content:"";position:absolute;top:12px;width:14px;height:3px;background-color:#8f9cb5}.cd-popup-container .cd-popup-close::before{-webkit-transform:rotate(45deg);-moz-transform:rotate(45deg);-ms-transform:rotate(45deg);-o-transform:rotate(45deg);transform:rotate(45deg);left:8px}.cd-popup-container .cd-popup-close::after{-webkit-transform:rotate(-45deg);-moz-transform:rotate(-45deg);-ms-transform:rotate(-45deg);-o-transform:rotate(-45deg);transform:rotate(-45deg);right:8px}.is-visible .cd-popup-container{-webkit-transform:translateY(0);-moz-transform:translateY(0);-ms-transform:translateY(0);-o-transform:translateY(0);transform:translateY(0)}</style>';
-		var html = '<div id="notifyvnoc" class="cd-popup" role="alert">	<div  class="cd-popup-container"><div id="notifyvnocmsg">'+tbl+'</div><ul class="cd-buttons"></ul><a href="#0" class="cd-popup-close img-replace">&nbsp;</a></div></div>';
+		var css = '<style>.trkr-popup{z-index:99999;position:fixed;left:0;top:0;height:100%;width:450px;background-color:transparent;;opacity:0;visibility:hidden;-webkit-transition:opacity .3s 0s,visibility 0 .3s;-moz-transition:opacity .3s 0s,visibility 0 .3s;transition:opacity .3s 0s,visibility 0 .3s}.trkr-popup.is-visible{opacity:1;visibility:visible;-webkit-transition:opacity .3s 0s,visibility 0 0;-moz-transition:opacity .3s 0s,visibility 0 0;transition:opacity .3s 0s,visibility 0 0}.trkr-popup-container{overflow:auto;height: 70%;position:relative;margin:4em auto;background:#FFF;border-radius:.25em .25em .4em .4em;text-align:center;box-shadow:0 0 20px rgba(0,0,0,0.2);-webkit-transform:translateY(-40px);-moz-transform:translateY(-40px);-ms-transform:translateY(-40px);-o-transform:translateY(-40px);transform:translateY(-40px);-webkit-backface-visibility:hidden;-webkit-transition-property:-webkit-transform;-moz-transition-property:-moz-transform;transition-property:transform;-webkit-transition-duration:.3s;-moz-transition-duration:.3s;transition-duration:.3s}.trkr-popup-container p{padding:3em 1em}.trkr-popup-container .cd-buttons:after{content:"";display:table;clear:both}.trkr-popup-container .cd-buttons li{float:left;width:50%}.trkr-popup-container .cd-buttons a{display:block;height:60px;line-height:60px;text-transform:uppercase;color:#FFF;-webkit-transition:background-color .2s;-moz-transition:background-color .2s;transition:background-color .2s}.trkr-popup-container .cd-buttons li:first-child a{background:#fc7169;border-radius:0 0 0 .25em}.no-touch .trkr-popup-container .cd-buttons li:first-child a:hover{background-color:#fc8982}.trkr-popup-container .cd-buttons li:last-child a{background:#b6bece;border-radius:0 0 .25em 0}.no-touch .trkr-popup-container .cd-buttons li:last-child a:hover{background-color:#c5ccd8}.trkr-popup-container .trkr-popup-close{position:absolute;top:8px;right:8px;width:30px;height:30px}.trkr-popup-container .trkr-popup-close::before,.trkr-popup-container .trkr-popup-close::after{content:"";position:absolute;top:12px;width:14px;height:3px;background-color:#8f9cb5}.trkr-popup-container .trkr-popup-close::before{-webkit-transform:rotate(45deg);-moz-transform:rotate(45deg);-ms-transform:rotate(45deg);-o-transform:rotate(45deg);transform:rotate(45deg);left:8px}.trkr-popup-container .trkr-popup-close::after{-webkit-transform:rotate(-45deg);-moz-transform:rotate(-45deg);-ms-transform:rotate(-45deg);-o-transform:rotate(-45deg);transform:rotate(-45deg);right:8px}.is-visible .trkr-popup-container{-webkit-transform:translateY(0);-moz-transform:translateY(0);-ms-transform:translateY(0);-o-transform:translateY(0);transform:translateY(0)}</style>';
+		var html = '<div id="notifyvnoc" class="trkr-popup" role="alert">	<div  class="trkr-popup-container"><div id="notifyvnocmsg">'+tbl+'</div><ul class="cd-buttons"></ul><a href="#0" class="trkr-popup-close img-replace">&nbsp;</a></div></div>';
 		jQuery('body').append(css+html);
-		$( "#notifyvnoc" ).draggable();
+		//$( "#notifyvnoc" ).draggable();
 	}
 	
-	jQuery('.cd-popup').off('click').on('click', function(event){
-		if( jQuery(event.target).is('.cd-popup-close') || jQuery(event.target).is('.cd-popup') ) {
+	jQuery('.trkr-popup').off('click').on('click', function(event){
+		if( jQuery(event.target).is('.trkr-popup-close') || jQuery(event.target).is('.trkr-popup') ) {
 			event.preventDefault();
 			jQuery(this).removeClass('is-visible');
 		}
@@ -92,7 +92,7 @@ if($('#selector').length==0){
 			}
 			if(text=='') return;
 			writeTable([[text]]);
-			///jQuery('.cd-popup').addClass('is-visible');
+			///jQuery('.trkr-popup').addClass('is-visible');
 			chrome.runtime.sendMessage({
 				from:    'content',
 				subject: 'Copied',
@@ -156,19 +156,19 @@ function writeTable(data) {
 	showLoaderVNOC("Writing table "+data.length,'writeTable');
 	for (i = 0; i < data.length; i = i + 1) {
 		row = $('<tr />');
-		row.append($('<td />').html('<input class="chck_row" type="checkbox" value="" />'));
+		row.append($('<td />').html('<input class="trkr-chck_row" type="checkbox" value="" />'));
 		for (j = 0; j < data[i].length; j++) {
 			row.append($('<td />').html("<input type='text' value='"+data[i][j]+"' />"));
 		}
 		rows.push(row);
 	}
-		//$('#result tr').remove();
+		//$('#trkr-result tr').remove();
 
 	for(var x=0;x<rows.length;x++){
-		$('#result').append(rows[x][0].outerHTML);
+		$('#trkr-result').append(rows[x][0].outerHTML);
 	}
 	hideLoaderVNOC('writeTable');
-	$('.btn-proceed').show();
+	$('.trkr-btn-proceed').show();
 	showFields();
 	
 }
@@ -176,12 +176,12 @@ function writeTable(data) {
 function fixColumns()
 {
 	var highestRows = 0;
-	$('#result tr').each(function(){
+	$('#trkr-result tr').each(function(){
 		var colCount = $(this).find('td').length;
 		highestRows = colCount > highestRows?colCount:highestRows;
 	});
 	
-	$('#result tr').each(function(){
+	$('#trkr-result tr').each(function(){
 		var colCount = $(this).find('td').length;
 		if(highestRows>colCount){
 			var diff = highestRows - colCount;
@@ -193,13 +193,13 @@ function fixColumns()
 	
 	for(var x=0;x<highestRows;x++){
 		var hasValue = false;
-		$('#result tr>td:nth-child('+(x+1)+')').each(function(){
+		$('#trkr-result tr>td:nth-child('+(x+1)+')').each(function(){
 			if($(this)[0].innerHTML!=undefined && $(this)[0].innerHTML!=''){
 				hasValue = true;
 			}
 		});
 		if(!hasValue){
-			$('#result tr>td:nth-child('+(x+1)+')').addClass('forRemove');
+			$('#trkr-result tr>td:nth-child('+(x+1)+')').addClass('forRemove');
 		}
 	}
 	$('.forRemove').remove();
@@ -207,9 +207,9 @@ function fixColumns()
 
 function showFields()
 {
-	$('#result').find('#fields').remove();
+	$('#trkr-result').find('#fields').remove();
 	fixColumns();
-	var select = '<select id="" class="form-control selectfields">'+
+	var select = '<select id="" class="form-control trkr-selectfields">'+
 		'<option value=""></option>'+
 		'<option value="name">Name</option>'+
 		'<option value="email">Email</option>'+
@@ -221,7 +221,7 @@ function showFields()
 		'<option value="domains">Number Of Domains</option>'+
 		'</select>';
 	
-	var colLength = $('#result tr:first td').length-1;
+	var colLength = $('#trkr-result tr:first td').length-1;
 	var firstTD = '';
 	
 	var row = $('<tr />');
@@ -231,7 +231,7 @@ function showFields()
 		row.append($('<td />').html(select));
 	}
 	
-	$('#result').prepend(row);
+	$('#trkr-result').prepend(row);
 }
 
 function endSelect(){

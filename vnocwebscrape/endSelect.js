@@ -1,4 +1,4 @@
 $("body").off('click');
 $("body").off('mousemove');
-$('#selector').hide();
-$('.selectedelement').removeClass('selectedelement').addClass('selectedelementhide');
+$('#trkr-selector').hide();
+$('.trkr-selectedelement').removeClass('trkr-selectedelement').addClass('selectedelementhide');

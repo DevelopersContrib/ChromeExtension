@@ -52,6 +52,15 @@ chrome.runtime.onMessage.addListener(function (msg, sender) {
 					chrome.browserAction.setBadgeText({text: current_count+''});
 			});
 		});
+
+		chrome.browserAction.getBadgeText({}, function(result) {
+			if(!isNaN(result)){
+				chrome.browserAction.setBadgeText({text: '1'});
+			}else{
+				var c = parseInt(result)+1;
+				chrome.browserAction.setBadgeText({text: c});
+			}
+		});
 		
 		chrome.notifications.create({
 			type:     'basic',
@@ -62,6 +71,9 @@ chrome.runtime.onMessage.addListener(function (msg, sender) {
 				{title: 'button.'}
 			],*/
 		priority: 0});
+		
+		
+		
 	}else if((msg.from === 'startSelect') && (msg.subject === 'Done')) {
 		var _rows = msg.rows;
 		

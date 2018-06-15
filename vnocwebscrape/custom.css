@@ -1,23 +1,23 @@
 @import url('https://fonts.googleapis.com/css?family=Anton|Poppins|Roboto');
-body {  
+/*body {  
     font-family: 'Poppins', sans-serif;  
     margin: 0;
     padding: 0;
-}
-#result td, th {
+}*/
+#trkr-result td, th {
     padding: 5px !important;
 }
-#result input {
+#trkr-result input {
     padding: 5px;
     background: #fafafa;
     border: 1px solid #ddd;
 }
-button, input, optgroup, select, textarea {
+/*button, input, optgroup, select, textarea {
     color: inherit;
     font: inherit;
     margin: 0;
-}
-select {
+}*/
+.trkr-selectfields {
     -webkit-appearance: menulist;
     box-sizing: border-box;
     align-items: center;
@@ -29,11 +29,11 @@ select {
     border-style: solid;
     border-image: initial;
 }
-#container_result {
+#trkr-container_result {
 	width: 760px;
     overflow-x: scroll;
 }
-#tbl-container .btn {
+#trkr-tbl-container .btn {
 	color: rgb(255, 255, 255);
     background: rgb(59, 90, 130) !important;    
     border: none;
@@ -45,18 +45,19 @@ select {
     font-size: 14px;
     
 }
-.tracker-box {    
+.trkr-tracker-box {    
     width: auto;
     text-align: center;
     color: #fff;
     background: #054e90; 
     padding: 15px;
 }
-.tracker-box h3 {   
+.trkr-tracker-box h3 {   
     margin-top: 0px;
     margin-bottom: 10px;        
 }
 .tracker-btn {
+	font-family: 'Poppins', sans-serif; 
     padding: 5px;
     border: 2px solid #fff;
     border-radius: 25px;
