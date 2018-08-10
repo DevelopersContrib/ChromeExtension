@@ -102,7 +102,7 @@ $(document).ready(function() {
 
 	   chrome.downloads.download({
 		  url: csvData,
-		  filename: filename
+		  filename: 'export.csv'
 		});
    }
    
