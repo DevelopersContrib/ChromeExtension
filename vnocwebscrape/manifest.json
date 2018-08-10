@@ -15,6 +15,7 @@
 	},
 	"permissions": [
 		"activeTab",
+		"downloads",
 		"<all_urls>",
 		"storage","alarms", "notifications"
 	],

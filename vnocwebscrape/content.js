@@ -59,7 +59,8 @@ if($('#trkr-selector').length==0){
 	$head.append(css);
 	
 	var tbl = ('<div id="trkr-tbl-container" class="stdform" style="margin-left:10px">'+
-	'<button class="btn btn-primary trkr-btn-proceed trkr-btn-tbl" style="display:none;color:#ffff;background: #333;margin-bottom:10px">Proceed to Research</button>'+
+	'<a id="btn-export-row" href="javascript:;" class="btn btn-primary trkr-btn-export trkr-btn-tbl" style="display:none;color:#ffff;background: #333;margin-bottom:10px">Export to CSV</a>'+
+	'<button class="btn btn-primary trkr-btn-proceed trkr-btn-tbl" style="display:none;color:#ffff;background: #333;margin-bottom:10px">Proceed to Research</button>'+	
 	'<button style="display:none;background: #333;margin-bottom:10px;color:#ffff;" class="trkr-btn-tbl btn btn-danger  trkr-btn-remove">Delete Selected</button>'+
 	'<form id="trkr-frmprocess" method="POST" action="https://manage.vnoc.com/research/tool" target="_blank">'+			
 	'</form>'+
@@ -169,6 +170,7 @@ function writeTable(data) {
 	}
 	hideLoaderVNOC('writeTable');
 	$('.trkr-btn-proceed').show();
+	$('.trkr-btn-export').show();
 	showFields();
 	
 }

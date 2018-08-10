@@ -66,6 +66,46 @@ $(document).ready(function() {
 		});
 	});
 	
+	$(document).on('click','#btn-export-row',function(){
+		exportTableToCSV.apply(this, [$('table#trkr-result'), 'export.csv']);
+	});
+	
+	function exportTableToCSV($table, filename) {
+	var $rows = jQuery('table#trkr-result td input:text').parents('tr'),
+
+	tmpColDelim = String.fromCharCode(11),
+	tmpRowDelim = String.fromCharCode(0),
+
+	colDelim = '","',
+	rowDelim = '"\r\n"',
+
+	csv = '"' + $rows.map(function (i, row) {
+		var $row = $(row),
+			$cols = $row.find('td').find('input:text');
+
+		return $cols.map(function (j, col) {
+			var $col = $(col)
+			var a = $col.clone();
+			a.val($col.val().replace('<br>',' '));
+			var text = a.val();
+			
+			return text.replace(/"/g, '""'); // escape double quotes
+
+		}).get().join(tmpColDelim);
+
+	}).get().join(tmpRowDelim)
+		.split(tmpRowDelim).join(rowDelim)
+		.split(tmpColDelim).join(colDelim) + '"',
+
+	// Data URI
+	csvData = 'data:application/csv;charset=utf-8,' + encodeURIComponent(csv);
+
+	   chrome.downloads.download({
+		  url: csvData,
+		  filename: filename
+		});
+   }
+   
 	$(document).on('click','.trkr-btn-proceed',function(){
 		var data = [];
 		var x = 0;
