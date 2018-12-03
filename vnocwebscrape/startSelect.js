@@ -65,7 +65,7 @@ $("body").on("click",function() {
 	clickEelement = targetElement;
 	if($(clickEelement).parents('#trkr-tbl-container').length>0) return;
 	
-	if(window.location.hostname=="medium.com"){
+	if(window.location.hostname=="medium.com" && window.location.href.indexOf('followers')==-1){
 		var rowVal = [];
 		var finalEl = $(".js-recommendList").find(".u-flex1");//a.link--overlay[data-action='show-user-card']");
 		
