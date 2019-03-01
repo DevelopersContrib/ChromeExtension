@@ -71,8 +71,9 @@ $(document).ready(function() {
 	});
 	
 	function exportTableToCSV($table, filename) {
-	var $rows = jQuery('table#trkr-result td input:text').parents('tr'),
-
+		jQuery.fn.reverse = [].reverse;
+	var $rows = jQuery('table#trkr-result td input:text').parents('tr').reverse();
+	
 	tmpColDelim = String.fromCharCode(11),
 	tmpRowDelim = String.fromCharCode(0),
 
