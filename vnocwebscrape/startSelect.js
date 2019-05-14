@@ -11,7 +11,8 @@ var elements = {
 };
 
 $("body").find('a').each(function(){
-	$(this).replaceWith($(this).attr('href','javascript:;').removeAttr('target').clone());
+	var href = $(this).attr('href');
+	$(this).replaceWith($(this).attr('href','javascript:;').removeAttr('target').attr('data-href',href).clone());
 });
 
 $("body").mousemove(function(event) {
@@ -65,7 +66,26 @@ $("body").on("click",function() {
 	clickEelement = targetElement;
 	if($(clickEelement).parents('#trkr-tbl-container').length>0) return;
 	
-	if(window.location.hostname=="medium.com" && window.location.href.indexOf('followers')==-1 && window.location.href.indexOf('following')==-1){
+	if(window.location.hostname=="github.com" && window.location.href.indexOf('commit')){
+		var rowVal = [];
+		var cls = "."+clickEelement.attr('class').split(' ').join('.');
+		var finalEl = $(cls);
+		
+		finalEl.each(function(){
+			var this_ = $(this);
+			rowVal.push([window.location.origin+'/'+this_.attr('data-href')]);
+		});
+		
+		//console.log(rowVal);
+		writeTable(rowVal);
+		hideLoaderVNOC();
+		endSelect();
+		chrome.runtime.sendMessage({
+			from:    'startSelect',
+			subject: 'Done',
+			rows:rowVal.length
+		});
+	}else if(window.location.hostname=="medium.com" && window.location.href.indexOf('followers')==-1 && window.location.href.indexOf('following')==-1){
 		var rowVal = [];
 		var finalEl = $(".js-recommendList").find(".u-flex1");//a.link--overlay[data-action='show-user-card']");
 		

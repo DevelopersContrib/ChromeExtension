@@ -156,17 +156,40 @@ function writeTable(data) {
 	var row;
 	showLoaderVNOC("Writing table "+data.length,'writeTable');
 	for (i = 0; i < data.length; i = i + 1) {
-		row = $('<tr />');
+		row = $('<tr class="rows" />');
 		row.append($('<td />').html('<input class="trkr-chck_row" type="checkbox" value="" />'));
+		
 		for (j = 0; j < data[i].length; j++) {
-			row.append($('<td />').html("<input type='text' value='"+data[i][j]+"' />"));
+			if(window.location.hostname=="github.com" && window.location.href.indexOf('commit')){
+				var cls = 'githubcommit'+i;
+				row.append($('<td />').html("<input id='name"+i+"' class='"+cls+"' type='text' value='"+data[i][j]+"' />"));
+				row.append($('<td />').html("<input id='email"+i+"' class='"+cls+"' type='text' value='"+data[i][j]+"' />"));
+			}else{
+				row.append($('<td />').html("<input type='text' value='"+data[i][j]+"' />"));
+			}			
 		}
+		
 		rows.push(row);
 	}
 		//$('#trkr-result tr').remove();
-
+	
 	for(var x=0;x<rows.length;x++){
 		$('#trkr-result').append(rows[x][0].outerHTML);
+		if(window.location.hostname=="github.com" && window.location.href.indexOf('commit')){
+			var url = $(rows[x].find('input')[1]).val()+'.patch';
+			
+			$.get(url,function(response){
+				var r = response.split("\n")[1].replace("From: ","").split(" ");
+				var email = r[1].replace("<","");
+				email = email.replace(">","");
+				var row1 = $('<tr />');
+				row1.append($('<td />').html('<input class="trkr-chck_row" type="checkbox" value="" />'));
+				row1.append($('<td />').html("<input type='text' value='"+r[0]+"' />"));
+				row1.append($('<td />').html("<input type='text' value='"+email+"' />"));
+				
+				$('#trkr-result tr.rows:first').replaceWith(row1[0].outerHTML);
+			});
+		}
 	}
 	hideLoaderVNOC('writeTable');
 	$('.trkr-btn-proceed').show();
