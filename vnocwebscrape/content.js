@@ -179,7 +179,7 @@ function writeTable(data) {
 			var url = $(rows[x].find('input')[1]).val()+'.patch';
 			
 			$.get(url,function(response){
-				var r = response.split("\n")[1].replace("From: ","").split(" ");
+				var r = response.split("\n")[1].replace("From: ","").split("<");
 				var email = r[1].replace("<","");
 				email = email.replace(">","");
 				var row1 = $('<tr />');
