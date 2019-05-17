@@ -160,7 +160,7 @@ function writeTable(data) {
 		row.append($('<td />').html('<input class="trkr-chck_row" type="checkbox" value="" />'));
 		
 		for (j = 0; j < data[i].length; j++) {
-			if(window.location.hostname=="github.com" && window.location.href.indexOf('commit')){
+			if(window.location.hostname=="github.com" && window.location.href.indexOf('commit')>-1){
 				var cls = 'githubcommit'+i;
 				row.append($('<td />').html("<input id='name"+i+"' class='"+cls+"' type='text' value='"+data[i][j]+"' />"));
 				row.append($('<td />').html("<input id='email"+i+"' class='"+cls+"' type='text' value='"+data[i][j]+"' />"));
@@ -175,7 +175,7 @@ function writeTable(data) {
 	
 	for(var x=0;x<rows.length;x++){
 		$('#trkr-result').append(rows[x][0].outerHTML);
-		if(window.location.hostname=="github.com" && window.location.href.indexOf('commit')){
+		if(window.location.hostname=="github.com" && window.location.href.indexOf('commit')>-1){
 			var url = $(rows[x].find('input')[1]).val()+'.patch';
 			
 			$.get(url,function(response){

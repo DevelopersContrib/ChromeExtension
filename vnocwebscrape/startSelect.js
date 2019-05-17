@@ -66,7 +66,7 @@ $("body").on("click",function() {
 	clickEelement = targetElement;
 	if($(clickEelement).parents('#trkr-tbl-container').length>0) return;
 	
-	if(window.location.hostname=="github.com" && window.location.href.indexOf('commit')){
+	if(window.location.hostname=="github.com" && window.location.href.indexOf('commit')>-1){
 		var rowVal = [];
 		var cls = "."+clickEelement.attr('class').split(' ').join('.');
 		var finalEl = $(cls);
