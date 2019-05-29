@@ -1,0 +1,21 @@
+<html>
+<head>
+<link rel="stylesheet" href="custom.css">
+<script src="jquery-3.3.1.js"></script>
+</head>
+<body style="margin: 0; padding: 0;">
+    <div class="trkr-tracker-box">
+        <h3>Trackers Tool</h3>
+		<button class="tracker-btn" id="startwebcrape" title="Start">Start</button>
+        <script src="popup.js"></script>
+    </div>
+	<div id="trkr-container_result">
+		<div id="trkr-tbl-container" class="stdform" style="margin-left:10px">
+			<button class="btn btn-primary trkr-btn-proceed trkr-btn-tbl" style="display:none;color:#ffff;background: #333;margin-bottom:10px">Proceed to Research</button>
+			<button style="display:none;background: #333;margin-bottom:10px;color:#ffff;" class="trkr-btn-tbl btn btn-danger  trkr-btn-remove">Delete Selected</button>
+			<form id="trkr-frmprocess" method="POST" action="https://manage.vnoc.com/research/tool" target="_blank"></form>
+			<table border=1 id="trkr-result" class="stdtable" style="background: #fff;"></table>
+		</div>
+	</div>
+</body>
+</html>
