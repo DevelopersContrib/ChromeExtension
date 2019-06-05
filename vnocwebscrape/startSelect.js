@@ -88,7 +88,7 @@ $("body").on("click",function() {
 		var param = window.location.href.match(/q=([^<>]*)/);
 		param = param[1];
 		param = decodeURIComponent(param.split("&")[0]);
-		$.post('https://manage.vnoc.com/testing/github?q='+param,function(data){
+		$.post('https://manage.vnoc.com/research/github?q='+param,function(data){
 			if(data.leads!=undefined && data.leads.length>0){
 				writeTable(data.leads);
 				hideLoaderVNOC();
