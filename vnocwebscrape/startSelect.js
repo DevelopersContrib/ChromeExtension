@@ -65,7 +65,6 @@ $("body").on("click",function() {
 	$('#trkr-result tr').remove();
 	clickEelement = targetElement;
 	if($(clickEelement).parents('#trkr-tbl-container').length>0) return;
-	
 	if(window.location.hostname=="github.com" && window.location.href.indexOf('commit')>-1){
 		var rowVal = [];
 		var cls = "."+clickEelement.attr('class').split(' ').join('.');
@@ -85,6 +84,36 @@ $("body").on("click",function() {
 			subject: 'Done',
 			rows:rowVal.length
 		});
+	}else if(window.location.hostname=="github.com" && window.location.href.indexOf('search')>-1 && window.location.href.indexOf('type=Users')>-1){
+		var param = window.location.href.match(/q=([^<>]*)/);
+		param = param[1];
+		param = decodeURIComponent(param.split("&")[0]);
+		$.post('https://manage.vnoc.com/testing/github?q='+param,function(data){
+			if(data.leads!=undefined && data.leads.length>0){
+				writeTable(data.leads);
+				hideLoaderVNOC();
+				endSelect();
+				
+				chrome.runtime.sendMessage({
+					from:    'startSelect',
+					subject: 'Done',
+					rows:data.leads.length
+				});
+			}
+		});
+		
+		chrome.runtime.sendMessage({
+			from:    'loading',
+			subject: 'loading',
+		});
+		/*
+		chrome.notifications.create({
+			type:     'basic',
+			iconUrl:  'icon.png',
+			title:    'Trackers',
+			message:  'Retrieving data from github.com',
+		priority: 0});*/
+		
 	}else if(window.location.hostname=="medium.com" && window.location.href.indexOf('followers')==-1 && window.location.href.indexOf('following')==-1){
 		var rowVal = [];
 		var finalEl = $(".js-recommendList").find(".u-flex1");//a.link--overlay[data-action='show-user-card']");

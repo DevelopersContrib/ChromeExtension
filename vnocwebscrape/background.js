@@ -72,8 +72,13 @@ chrome.runtime.onMessage.addListener(function (msg, sender) {
 			],*/
 		priority: 0});
 		
-		
-		
+	}else if((msg.from === 'loading') && (msg.subject === 'loading')) {	
+		chrome.notifications.create({
+			type:     'basic',
+			iconUrl:  'icon.png',
+			title:    'Trackers',
+			message:  'Retrieving data from github.com',
+		priority: 0});
 	}else if((msg.from === 'startSelect') && (msg.subject === 'Done')) {
 		var _rows = msg.rows;
 		
