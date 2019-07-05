@@ -1,6 +1,6 @@
 {
     "name": "VNOCTrackers",
-    "version": "2.0.5",
+    "version": "2.0.6",
     "manifest_version": 2,
     
 	"browser_action": {
@@ -15,6 +15,7 @@
 	},
 	"permissions": [
 		"activeTab",
+		"tabs",
 		"downloads",
 		"<all_urls>",
 		"storage","alarms", "notifications"

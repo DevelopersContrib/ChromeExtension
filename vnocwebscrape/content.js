@@ -58,13 +58,14 @@ if($('#trkr-selector').length==0){
 	'</style>';
 	$head.append(css);
 	
-	var tbl = ('<div id="trkr-tbl-container" class="stdform" style="margin-left:10px">'+
-	'<a id="btn-export-row" href="javascript:;" class="btn btn-primary trkr-btn-export trkr-btn-tbl" style="display:none;color:#ffff;background: #333;margin-bottom:10px">Export to CSV</a>'+
-	'<button class="btn btn-primary trkr-btn-proceed trkr-btn-tbl" style="display:none;color:#ffff;background: #333;margin-bottom:10px">Proceed to Research</button>'+	
-	'<button style="display:none;background: #333;margin-bottom:10px;color:#ffff;" class="trkr-btn-tbl btn btn-danger  trkr-btn-remove">Delete Selected</button>'+
+	var tbl = ('<div id="trkr-tbl-container">'+
+	'<h3 class="section-title-trackers">Tracker Scrape Result</h3>'+
+	'<a id="btn-export-row" href="javascript:;" class="tarcker-btn-default tarcker-btn-primary mr-1">Export to CSV</a>'+
+	'<button class="tarcker-btn-default tarcker-btn-primary trkr-btn-proceed trkr-btn-tbl mx-1">Proceed to Research</button>'+	
+	'<button class="trkr-btn-tbl tarcker-btn-default tarcker-btn-danger trkr-btn-remove ml-1">Delete Selected</button>'+
 	'<form id="trkr-frmprocess" method="POST" action="https://manage.vnoc.com/research/tool" target="_blank">'+			
 	'</form>'+
-	'<table border=1 id="trkr-result" class="stdtable" style="background: #fff;"></table>'+
+	'<table border="1" id="trkr-result" class="tracker-table-scrape"></table>'+
 	'</div>');
 	
 	

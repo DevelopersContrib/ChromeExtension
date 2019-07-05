@@ -1,5 +1,3 @@
-console.log('popup.js');
-
 document.getElementById("startwebcrape").addEventListener('click', () => {
 	var elem = document.getElementById("startwebcrape");
 	
@@ -42,7 +40,112 @@ window.addEventListener('DOMContentLoaded', function () {
 	});
 });
 
+function _cookie(key, value, options) {
+	// key and value given, set cookie...
+	if (arguments.length > 1 && (value === null || typeof value !== "object")) {
+		options = options || {};
+
+		if (value === null) {
+			options.expires = -1;
+		}
+
+		if (typeof options.expires === 'number') {
+			var days = options.expires, t = options.expires = new Date();
+			//t.setDate(t.getDate() + days);
+			t.setMilliseconds(t.getMilliseconds() + days * 864e+5);
+		}
+
+		return (document.cookie = [
+			encodeURIComponent(key), '=',
+			options.raw ? String(value) : encodeURIComponent(String(value)),
+			options.expires ? '; expires=' + options.expires.toUTCString() : '', // use expires attribute, max-age is not supported by IE
+			options.path ? '; path=' + options.path : '',
+			options.domain ? '; domain=' + options.domain : '',
+			options.secure ? '; secure' : ''
+		].join(''));
+	}
+
+	// key and possibly options given, get cookie...
+	options = value || {};
+	var result, decode = options.raw ? function (s) {
+		return s;
+	} : decodeURIComponent;
+	return (result = new RegExp('(?:^|; )' + encodeURIComponent(key) + '=([^;]*)').exec(document.cookie)) ? decode(result[1]) : null;
+}
+
 $(document).ready(function() {
+	if(_cookie('trackers-save-page')!=undefined){
+		var c = _cookie('trackers-save-page').split('||');
+		for(var x=0;x<c.length;x++){
+			if(c[x]!='')
+				$('#save-page').append('<li><a class="load-page" href="javascript:;">'+c[x]+'</a>&nbsp;<a data-url="'+c[x]+'" class="remove-save-page tarcker-btn-default tarcker-btn-danger tarcker-btn-sm" href="javascript:;">remove</a></li>');
+		}
+		
+		$(document).on('click','.load-page', function(){
+			var newurl = $(this).html();
+			chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+				chrome.tabs.update(tabs[0].id, {url: newurl});
+			});
+		});
+		
+		$(document).on('click','.remove-save-page', function(){
+			var url = $(this).attr('data-url');
+			$(this).parents('li').remove();
+			var c = _cookie('trackers-save-page').split('||');
+			var index = c.indexOf(url);
+			
+			if (index > -1) {
+				c.splice(index, 1);
+				_cookie('trackers-save-page',c.join('||'));
+			}
+		});
+	}
+	
+	$(document).on('click','.trkr-btn-save-page', function(){
+		chrome.tabs.query({
+			active: true,
+			currentWindow: true
+		}, function(tabs) {
+			// and use that tab to fill in out title and url
+			var tab = tabs[0];
+			var url = tab.url;
+			var val = '';
+			
+			if(_cookie('trackers-save-page')!=undefined){
+				var c = _cookie('trackers-save-page').split('||');
+				c.push(url);
+				var uniqueUrl = [];
+				$.each(c, function(i, el){
+					if($.inArray(el, uniqueUrl) === -1) uniqueUrl.push(el);
+				});
+
+				val = uniqueUrl.join('||');
+			}else{
+				val = url;
+			}
+			_cookie('trackers-save-page',val);
+			
+			$('#save-page').append('<li><a class="load-page" href="javascript:;">'+url+'</a>&nbsp;<a data-url="'+url+'" class="remove-save-page tarcker-btn-default tarcker-btn-danger tarcker-btn-sm" href="javascript:;">remove</a></li>');
+			$(document).on('click','.load-page', function(){
+				var newurl = $(this).html();
+				chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+					chrome.tabs.update(tabs[0].id, {url: newurl});
+				});
+			});
+			
+			$(document).on('click','.remove-save-page', function(){
+				var url = $(this).attr('data-url');
+				$(this).parents('li').remove();
+				var c = _cookie('trackers-save-page').split('||');
+				var index = c.indexOf(url);
+				
+				if (index > -1) {
+					c.splice(index, 1);
+					_cookie('trackers-save-page',c.join('||'));
+				}
+			});
+		});
+	});
     $(document).on('click','#trkr-tbl-container input[type=text]',function(){ this.select(); });
 
 	$(document).on('click','.trkr-btn-remove',function(){

@@ -1,9 +1,9 @@
 @import url('https://fonts.googleapis.com/css?family=Anton|Poppins|Roboto');
-/*body {  
+body {  
     font-family: 'Poppins', sans-serif;  
-    margin: 0;
+    margin: 0 0 56px; 
     padding: 0;
-}*/
+}
 #trkr-result td, th {
     padding: 5px !important;
 }
@@ -12,11 +12,6 @@
     background: #fafafa;
     border: 1px solid #ddd;
 }
-/*button, input, optgroup, select, textarea {
-    color: inherit;
-    font: inherit;
-    margin: 0;
-}*/
 .trkr-selectfields {
     -webkit-appearance: menulist;
     box-sizing: border-box;
@@ -29,21 +24,32 @@
     border-style: solid;
     border-image: initial;
 }
-#trkr-container_result {
-	width: 760px;
-    overflow-x: scroll;
+.trkr-btn-save-page{
+    color: rgb(255, 255, 255);
+    background: #007bff !important;    
+    border: none;
+    border-radius: 4px;
+    padding: 10px 15px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    margin-right: 5px;
+    font-size: 14px;
+    cursor: pointer;
+}
+.trkr-btn-save-page:hover{
+    opacity: 0.8;
 }
 #trkr-tbl-container .btn {
-	color: rgb(255, 255, 255);
+    color: rgb(255, 255, 255);
     background: rgb(59, 90, 130) !important;    
     border: none;
     border-radius: 4px;
     padding: 10px 15px;
-	margin-bottom: 10px;
+    margin-bottom: 10px;
     margin-top: 10px;
-	margin-right: 5px;
+    margin-right: 5px;
     font-size: 14px;
-    
+
 }
 .trkr-tracker-box {    
     width: auto;
@@ -57,7 +63,7 @@
     margin-bottom: 10px;        
 }
 .tracker-btn {
-	font-family: 'Poppins', sans-serif; 
+    font-family: 'Poppins', sans-serif; 
     padding: 5px;
     border: 2px solid #fff;
     border-radius: 25px;
@@ -82,4 +88,493 @@
 }
 .tracker-btn img {
     height: 38px;
+}
+
+.tarcker-btn-default {
+    display: inline-block;
+    font-weight: 400;
+    color: #212529;
+    text-align: center;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-color: transparent;
+    border: 1px solid transparent;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: 0.25rem;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    text-decoration: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .tarcker-btn-default {
+        transition: none;
+    }
+}
+
+.tarcker-btn-default:hover {
+    color: #212529;
+    text-decoration: none;
+}
+
+.tarcker-btn-default:focus, 
+.tarcker-btn-default.focus {
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+    text-decoration: none;
+}
+
+.tarcker-btn-default.disabled, 
+.tarcker-btn-default:disabled {
+    opacity: 0.65;
+}
+
+a.tarcker-btn-default.disabled{
+    pointer-events: none;
+}
+
+/* Button Danger ----------------------- */
+.tarcker-btn-danger {
+    color: #fff;
+    background-color: #dc3545;
+    border-color: #dc3545;
+}
+
+.tarcker-btn-danger:hover {
+    color: #fff;
+    background-color: #c82333;
+    border-color: #bd2130;
+}
+
+.tarcker-btn-danger:focus, 
+.tarcker-btn-danger.focus {
+    box-shadow: 0 0 0 0.2rem rgba(225, 83, 97, 0.5);
+    text-decoration: none;
+}
+
+.tarcker-btn-danger.disabled, 
+.tarcker-btn-danger:disabled {
+    color: #fff;
+    background-color: #dc3545;
+    border-color: #dc3545;
+}
+
+.tarcker-btn-danger:not(:disabled):not(.disabled):active, 
+.tarcker-btn-danger:not(:disabled):not(.disabled).active {
+    color: #fff;
+    background-color: #bd2130;
+    border-color: #b21f2d;
+    text-decoration: none;
+}
+
+.tarcker-btn-danger:not(:disabled):not(.disabled):active:focus, 
+.tarcker-btn-danger:not(:disabled):not(.disabled).active:focus {
+    box-shadow: 0 0 0 0.2rem rgba(225, 83, 97, 0.5);
+    text-decoration: none;
+}
+
+/* Button Primary ----------------------- */
+.tarcker-btn-primary {
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.tarcker-btn-primary:hover {
+    color: #fff;
+    background-color: #0069d9;
+    border-color: #0062cc;
+}
+
+.tarcker-btn-primary:focus, 
+.tarcker-btn-primary.focus {
+    box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.5);
+}
+
+.tarcker-btn-primary.disabled, 
+.tarcker-btn-primary:disabled {
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.tarcker-btn-primary:not(:disabled):not(.disabled):active, 
+.tarcker-btn-primary:not(:disabled):not(.disabled).active{
+    color: #fff;
+    background-color: #0062cc;
+    border-color: #005cbf;
+}
+
+.tarcker-btn-primary:not(:disabled):not(.disabled):active:focus, 
+.tarcker-btn-primary:not(:disabled):not(.disabled).active:focus{
+    box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.5);
+}
+
+/* Button SM --------------------------- */
+.tarcker-btn-sm {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.575rem;
+    line-height: 1.5;
+    border-radius: 0.2rem;
+}
+
+/* List Url */
+.tracker-list-unstyled {
+    padding-left: 0;
+    list-style: decimal;
+}
+.tracker-list-unstyled li{
+    display: block;
+    margin-bottom: 5px;
+    list-style: decimal;
+}
+.tracker-list-unstyled li a.load-page{
+    font-family: 'Poppins', sans-serif;  
+    color: #000;
+    display: inline-block;
+    font-size: 13px;
+    margin-right: 5px;
+}
+.tracker-list-unstyled li a.load-page:hover,
+.tracker-list-unstyled li a.load-page:focus,
+.tracker-list-unstyled li a.load-page:active{
+    outline: none;
+    text-decoration: none;
+}
+.container-save-btn{
+    margin: 0;
+    padding-left: 10px;
+    text-align: center;
+    background-color: #054e90;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+.section-title-trackers{
+    font-family: 'Poppins', sans-serif;
+    font-size: 21px;
+    margin: 10px 0 15px;
+}
+.page-saved-container{
+    margin: 0;
+    overflow-y: auto;
+    min-height: 140px;
+}
+.tracker-min-btn{
+    color:#fff;
+    background: #333;
+    margin-bottom:10px;
+    min-width: 300px;
+}
+.tracker-result-main-container{
+    width: 100%;
+    max-width: 760px;
+    overflow: auto;
+    max-height: 400px;
+    padding: 0 15px 50px;
+    min-width: 450px;
+}
+.tracker-table-scrape{
+    background-color: #fff;
+    width: 100%;
+}
+.ttc-result{
+    display: block;
+    width: 100%;
+    max-width: 100%;
+}
+.m-0 {
+    margin: 0 !important;
+}
+
+.mt-0,
+.my-0 {
+    margin-top: 0 !important;
+}
+
+.mr-0,
+.mx-0 {
+    margin-right: 0 !important;
+}
+
+.mb-0,
+.my-0 {
+    margin-bottom: 0 !important;
+}
+
+.ml-0,
+.mx-0 {
+    margin-left: 0 !important;
+}
+
+.m-1 {
+    margin: 0.25rem !important;
+}
+
+.mt-1,
+.my-1 {
+    margin-top: 0.25rem !important;
+}
+
+.mr-1,
+.mx-1 {
+    margin-right: 0.25rem !important;
+}
+
+.mb-1,
+.my-1 {
+    margin-bottom: 0.25rem !important;
+}
+
+.ml-1,
+.mx-1 {
+    margin-left: 0.25rem !important;
+}
+
+.m-2 {
+    margin: 0.5rem !important;
+}
+
+.mt-2,
+.my-2 {
+    margin-top: 0.5rem !important;
+}
+
+.mr-2,
+.mx-2 {
+    margin-right: 0.5rem !important;
+}
+
+.mb-2,
+.my-2 {
+    margin-bottom: 0.5rem !important;
+}
+
+.ml-2,
+.mx-2 {
+    margin-left: 0.5rem !important;
+}
+
+.m-3 {
+    margin: 1rem !important;
+}
+
+.mt-3,
+.my-3 {
+    margin-top: 1rem !important;
+}
+
+.mr-3,
+.mx-3 {
+    margin-right: 1rem !important;
+}
+
+.mb-3,
+.my-3 {
+    margin-bottom: 1rem !important;
+}
+
+.ml-3,
+.mx-3 {
+    margin-left: 1rem !important;
+}
+
+.m-4 {
+    margin: 1.5rem !important;
+}
+
+.mt-4,
+.my-4 {
+    margin-top: 1.5rem !important;
+}
+
+.mr-4,
+.mx-4 {
+    margin-right: 1.5rem !important;
+}
+
+.mb-4,
+.my-4 {
+    margin-bottom: 1.5rem !important;
+}
+
+.ml-4,
+.mx-4 {
+    margin-left: 1.5rem !important;
+}
+
+.m-5 {
+    margin: 3rem !important;
+}
+
+.mt-5,
+.my-5 {
+    margin-top: 3rem !important;
+}
+
+.mr-5,
+.mx-5 {
+    margin-right: 3rem !important;
+}
+
+.mb-5,
+.my-5 {
+    margin-bottom: 3rem !important;
+}
+
+.ml-5,
+.mx-5 {
+    margin-left: 3rem !important;
+}
+
+.p-0 {
+    padding: 0 !important;
+}
+
+.pt-0,
+.py-0 {
+    padding-top: 0 !important;
+}
+
+.pr-0,
+.px-0 {
+    padding-right: 0 !important;
+}
+
+.pb-0,
+.py-0 {
+    padding-bottom: 0 !important;
+}
+
+.pl-0,
+.px-0 {
+    padding-left: 0 !important;
+}
+
+.p-1 {
+    padding: 0.25rem !important;
+}
+
+.pt-1,
+.py-1 {
+    padding-top: 0.25rem !important;
+}
+
+.pr-1,
+.px-1 {
+    padding-right: 0.25rem !important;
+}
+
+.pb-1,
+.py-1 {
+    padding-bottom: 0.25rem !important;
+}
+
+.pl-1,
+.px-1 {
+    padding-left: 0.25rem !important;
+}
+
+.p-2 {
+    padding: 0.5rem !important;
+}
+
+.pt-2,
+.py-2 {
+    padding-top: 0.5rem !important;
+}
+
+.pr-2,
+.px-2 {
+    padding-right: 0.5rem !important;
+}
+
+.pb-2,
+.py-2 {
+    padding-bottom: 0.5rem !important;
+}
+
+.pl-2,
+.px-2 {
+    padding-left: 0.5rem !important;
+}
+
+.p-3 {
+    padding: 1rem !important;
+}
+
+.pt-3,
+.py-3 {
+    padding-top: 1rem !important;
+}
+
+.pr-3,
+.px-3 {
+    padding-right: 1rem !important;
+}
+
+.pb-3,
+.py-3 {
+    padding-bottom: 1rem !important;
+}
+
+.pl-3,
+.px-3 {
+    padding-left: 1rem !important;
+}
+
+.p-4 {
+    padding: 1.5rem !important;
+}
+
+.pt-4,
+.py-4 {
+    padding-top: 1.5rem !important;
+}
+
+.pr-4,
+.px-4 {
+    padding-right: 1.5rem !important;
+}
+
+.pb-4,
+.py-4 {
+    padding-bottom: 1.5rem !important;
+}
+
+.pl-4,
+.px-4 {
+    padding-left: 1.5rem !important;
+}
+
+.p-5 {
+    padding: 3rem !important;
+}
+
+.pt-5,
+.py-5 {
+    padding-top: 3rem !important;
+}
+
+.pr-5,
+.px-5 {
+    padding-right: 3rem !important;
+}
+
+.pb-5,
+.py-5 {
+    padding-bottom: 3rem !important;
+}
+
+.pl-5,
+.px-5 {
+    padding-left: 3rem !important;
+}
+*, *::after, *::before {
+    box-sizing: border-box;
 }
