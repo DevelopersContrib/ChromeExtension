@@ -73,8 +73,65 @@ function _cookie(key, value, options) {
 	return (result = new RegExp('(?:^|; )' + encodeURIComponent(key) + '=([^;]*)').exec(document.cookie)) ? decode(result[1]) : null;
 }
 
+function getCookies(callback) {
+    chrome.cookies.get({"url": 'http://localhost', "name": 'trackers-save-page'}, function(cookie) {
+        if(callback) {
+            callback(cookie);
+        }
+    });
+}
+
+function setCookies(value, callback) {
+	chrome.cookies.set({ url: "http://localhost", name: "trackers-save-page", value: value, expirationDate: (new Date().getTime()/1000) + 3600 },function(cookie){
+        if(callback) {
+            callback(cookie);
+        }
+    });
+}
+
+function initRemove(){
+	$(document).on('click','.remove-save-page', function(){
+		var url = $(this).attr('data-url');
+		$(this).parents('li').remove();
+		
+		getCookies(function(cookie){
+			if(cookie!=undefined){
+				var c = cookie.value.split('||');
+				var index = c.indexOf(url);
+				
+				if (index > -1) {
+					c.splice(index, 1);
+					setCookies(c.join('||'));
+				}
+			}
+		});
+	});
+}
+
+function initClickSavePage(){
+	$(document).on('click','.load-page', function(){
+		var newurl = $(this).html();
+		chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+			chrome.tabs.update(tabs[0].id, {url: newurl});
+		});
+	});
+}
+
 $(document).ready(function() {
-	if(_cookie('trackers-save-page')!=undefined){
+	getCookies(function(cookie){
+		if(cookie!=undefined){
+			var c = cookie.value.split('||');
+			for(var x=0;x<c.length;x++){
+				if(c[x]!='')
+					$('#save-page').append('<li><a class="load-page" href="javascript:;">'+c[x]+'</a>&nbsp;<a data-url="'+c[x]+'" class="remove-save-page tarcker-btn-default tarcker-btn-danger tarcker-btn-sm" href="javascript:;">remove</a></li>');
+			}
+			
+			initClickSavePage();
+			initRemove();
+		}
+	});
+	
+	/*if(_cookie('trackers-save-page')!=undefined){
 		var c = _cookie('trackers-save-page').split('||');
 		for(var x=0;x<c.length;x++){
 			if(c[x]!='')
@@ -99,7 +156,7 @@ $(document).ready(function() {
 				_cookie('trackers-save-page',c.join('||'));
 			}
 		});
-	}
+	}*/
 	
 	$(document).on('click','.trkr-btn-save-page', function(){
 		chrome.tabs.query({
@@ -111,39 +168,58 @@ $(document).ready(function() {
 			var url = tab.url;
 			var val = '';
 			
-			if(_cookie('trackers-save-page')!=undefined){
-				var c = _cookie('trackers-save-page').split('||');
-				c.push(url);
-				var uniqueUrl = [];
-				$.each(c, function(i, el){
-					if($.inArray(el, uniqueUrl) === -1) uniqueUrl.push(el);
-				});
+			getCookies(function(cookie){
+				if(cookie!=undefined){
+					var c = cookie.value.split('||');
+					c.push(url);
+					var uniqueUrl = [];
+					$.each(c, function(i, el){
+						if($.inArray(el, uniqueUrl) === -1) uniqueUrl.push(el);
+					});
 
-				val = uniqueUrl.join('||');
-			}else{
-				val = url;
-			}
-			_cookie('trackers-save-page',val);
-			
-			$('#save-page').append('<li><a class="load-page" href="javascript:;">'+url+'</a>&nbsp;<a data-url="'+url+'" class="remove-save-page tarcker-btn-default tarcker-btn-danger tarcker-btn-sm" href="javascript:;">remove</a></li>');
-			$(document).on('click','.load-page', function(){
-				var newurl = $(this).html();
-				chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-					chrome.tabs.update(tabs[0].id, {url: newurl});
-				});
-			});
-			
-			$(document).on('click','.remove-save-page', function(){
-				var url = $(this).attr('data-url');
-				$(this).parents('li').remove();
-				var c = _cookie('trackers-save-page').split('||');
-				var index = c.indexOf(url);
-				
-				if (index > -1) {
-					c.splice(index, 1);
-					_cookie('trackers-save-page',c.join('||'));
+					val = uniqueUrl.join('||');
+					setCookies(val);
+				}else{
+					setCookies(url);
 				}
 			});
+			
+			// if(_cookie('trackers-save-page')!=undefined){
+				// var c = _cookie('trackers-save-page').split('||');
+				// c.push(url);
+				// var uniqueUrl = [];
+				// $.each(c, function(i, el){
+					// if($.inArray(el, uniqueUrl) === -1) uniqueUrl.push(el);
+				// });
+
+				// val = uniqueUrl.join('||');
+			// }else{
+				// val = url;
+			// }
+			// _cookie('trackers-save-page',val);
+			
+			$('#save-page').append('<li><a class="load-page" href="javascript:;">'+url+'</a><a data-url="'+url+'" class="remove-save-page tarcker-btn-default tarcker-btn-danger tarcker-btn-sm" href="javascript:;">remove</a></li>');
+			initClickSavePage();
+			initRemove();
+			
+			// $(document).on('click','.load-page', function(){
+				// var newurl = $(this).html();
+				// chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+					// chrome.tabs.update(tabs[0].id, {url: newurl});
+				// });
+			// });
+			
+			// $(document).on('click','.remove-save-page', function(){
+				// var url = $(this).attr('data-url');
+				// $(this).parents('li').remove();
+				// var c = _cookie('trackers-save-page').split('||');
+				// var index = c.indexOf(url);
+				
+				// if (index > -1) {
+					// c.splice(index, 1);
+					// _cookie('trackers-save-page',c.join('||'));
+				// }
+			// });
 		});
 	});
     $(document).on('click','#trkr-tbl-container input[type=text]',function(){ this.select(); });

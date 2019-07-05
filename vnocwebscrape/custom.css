@@ -1,10 +1,10 @@
 @import url('https://fonts.googleapis.com/css?family=Anton|Poppins|Roboto');
-body {  
+body.tracker-body {  
     font-family: 'Poppins', sans-serif;  
     margin: 0 0 56px; 
     padding: 0;
 }
-#trkr-result td, th {
+#trkr-result td, #trkr-result th {
     padding: 5px !important;
 }
 #trkr-result input {
@@ -235,9 +235,10 @@ a.tarcker-btn-default.disabled{
 .tracker-list-unstyled li a.load-page{
     font-family: 'Poppins', sans-serif;  
     color: #000;
-    display: inline-block;
+    display: inline;
     font-size: 13px;
     margin-right: 5px;
+    word-break: break-word;
 }
 .tracker-list-unstyled li a.load-page:hover,
 .tracker-list-unstyled li a.load-page:focus,
@@ -575,6 +576,9 @@ a.tarcker-btn-default.disabled{
 .px-5 {
     padding-left: 3rem !important;
 }
-*, *::after, *::before {
+body.tracker-body *, 
+body.tracker-body *::after, 
+body.tracker-body *::before,
+body.tracker-body{
     box-sizing: border-box;
 }

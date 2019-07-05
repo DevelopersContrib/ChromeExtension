@@ -15,6 +15,7 @@
 	},
 	"permissions": [
 		"activeTab",
+		"cookies",
 		"tabs",
 		"downloads",
 		"<all_urls>",
