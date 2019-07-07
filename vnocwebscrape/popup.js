@@ -82,7 +82,9 @@ function getCookies(callback) {
 }
 
 function setCookies(value, callback) {
-	chrome.cookies.set({ url: "http://localhost", name: "trackers-save-page", value: value, expirationDate: (new Date().getTime()/1000) + 3600 },function(cookie){
+	var expirationDate = new Date();
+	expirationDate.setMonth(expirationDate.getMonth() + 12);
+	chrome.cookies.set({ url: "http://localhost", name: "trackers-save-page", value: value, expirationDate: (expirationDate.getTime()/1000) + 3600 },function(cookie){
         if(callback) {
             callback(cookie);
         }
