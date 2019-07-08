@@ -110,7 +110,8 @@ function initRemove(){
 			$('.no-activity').hide();
 			$('.page-saved-container').show();
 		}else{
-			if($('#trkr-container_result').is(':visible')){
+
+			if($('#trkr-result tr').length>0){
 				$('.no-activity').hide();
 			}else{
 				$('.no-activity').show();			
@@ -137,19 +138,29 @@ $(document).ready(function() {
 				if(c[x]!='')
 					$('#save-page').append('<li><a class="load-page" href="javascript:;">'+c[x]+'</a>&nbsp;<a data-url="'+c[x]+'" class="remove-save-page tarcker-btn-default tarcker-btn-danger tarcker-btn-sm" href="javascript:;">remove</a></li>');
 			}
-			
 			if($('#save-page li').length>0){
 				$('.no-activity').hide();
 				$('.page-saved-container').show();
 			}else{
-				$('.no-activity').show();
+				//setTimeout(function(){
+					if($('#trkr-result tr').length>0){
+						$('.no-activity').hide();
+					}else{
+						$('.no-activity').show();			
+					}
+				//},500);
 				$('.page-saved-container').hide();
 			}
 			
 			initClickSavePage();
 			initRemove();
 		}else{
-			$('.no-activity').show();
+			
+			if($('#trkr-result tr').length>0){
+				$('.no-activity').hide();
+			}else{
+				$('.no-activity').show();			
+			}
 			$('.page-saved-container').hide();
 		}		
 	});

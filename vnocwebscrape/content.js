@@ -197,6 +197,7 @@ function writeTable(data) {
 	$('.trkr-btn-export').show();
 	showFields();
 	$('.no-activity').hide();
+	
 }
 
 function fixColumns()
