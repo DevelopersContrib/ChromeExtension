@@ -82,9 +82,7 @@ function getCookies(callback) {
 }
 
 function setCookies(value, callback) {
-	var expirationDate = new Date();
-	expirationDate.setMonth(expirationDate.getMonth() + 12);
-	chrome.cookies.set({ url: "http://localhost", name: "trackers-save-page", value: value, expirationDate: (expirationDate.getTime()/1000) + 3600 },function(cookie){
+	chrome.cookies.set({ url: "http://localhost", name: "trackers-save-page", value: value, expirationDate: (new Date().getTime()/1000) + 3600 },function(cookie){
         if(callback) {
             callback(cookie);
         }
@@ -107,6 +105,18 @@ function initRemove(){
 				}
 			}
 		});
+		
+		if($('#save-page li').length>0){
+			$('.no-activity').hide();
+			$('.page-saved-container').show();
+		}else{
+			if($('#trkr-container_result').is(':visible')){
+				$('.no-activity').hide();
+			}else{
+				$('.no-activity').show();			
+			}
+			$('.page-saved-container').hide();
+		}
 	});
 }
 
@@ -128,37 +138,21 @@ $(document).ready(function() {
 					$('#save-page').append('<li><a class="load-page" href="javascript:;">'+c[x]+'</a>&nbsp;<a data-url="'+c[x]+'" class="remove-save-page tarcker-btn-default tarcker-btn-danger tarcker-btn-sm" href="javascript:;">remove</a></li>');
 			}
 			
+			if($('#save-page li').length>0){
+				$('.no-activity').hide();
+				$('.page-saved-container').show();
+			}else{
+				$('.no-activity').show();
+				$('.page-saved-container').hide();
+			}
+			
 			initClickSavePage();
 			initRemove();
-		}
+		}else{
+			$('.no-activity').show();
+			$('.page-saved-container').hide();
+		}		
 	});
-	
-	/*if(_cookie('trackers-save-page')!=undefined){
-		var c = _cookie('trackers-save-page').split('||');
-		for(var x=0;x<c.length;x++){
-			if(c[x]!='')
-				$('#save-page').append('<li><a class="load-page" href="javascript:;">'+c[x]+'</a>&nbsp;<a data-url="'+c[x]+'" class="remove-save-page tarcker-btn-default tarcker-btn-danger tarcker-btn-sm" href="javascript:;">remove</a></li>');
-		}
-		
-		$(document).on('click','.load-page', function(){
-			var newurl = $(this).html();
-			chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-				chrome.tabs.update(tabs[0].id, {url: newurl});
-			});
-		});
-		
-		$(document).on('click','.remove-save-page', function(){
-			var url = $(this).attr('data-url');
-			$(this).parents('li').remove();
-			var c = _cookie('trackers-save-page').split('||');
-			var index = c.indexOf(url);
-			
-			if (index > -1) {
-				c.splice(index, 1);
-				_cookie('trackers-save-page',c.join('||'));
-			}
-		});
-	}*/
 	
 	$(document).on('click','.trkr-btn-save-page', function(){
 		chrome.tabs.query({
@@ -178,6 +172,12 @@ $(document).ready(function() {
 					$.each(c, function(i, el){
 						if($.inArray(el, uniqueUrl) === -1) uniqueUrl.push(el);
 					});
+					
+					$('#save-page li').remove();
+					for(var x=0;x<uniqueUrl.length;x++){
+						if(uniqueUrl[x]!='')
+							$('#save-page').append('<li><a class="load-page" href="javascript:;">'+uniqueUrl[x]+'</a>&nbsp;<a data-url="'+uniqueUrl[x]+'" class="remove-save-page tarcker-btn-default tarcker-btn-danger tarcker-btn-sm" href="javascript:;">remove</a></li>');
+					}
 
 					val = uniqueUrl.join('||');
 					setCookies(val);
@@ -185,43 +185,12 @@ $(document).ready(function() {
 					setCookies(url);
 				}
 			});
-			
-			// if(_cookie('trackers-save-page')!=undefined){
-				// var c = _cookie('trackers-save-page').split('||');
-				// c.push(url);
-				// var uniqueUrl = [];
-				// $.each(c, function(i, el){
-					// if($.inArray(el, uniqueUrl) === -1) uniqueUrl.push(el);
-				// });
 
-				// val = uniqueUrl.join('||');
-			// }else{
-				// val = url;
-			// }
-			// _cookie('trackers-save-page',val);
-			
-			$('#save-page').append('<li><a class="load-page" href="javascript:;">'+url+'</a><a data-url="'+url+'" class="remove-save-page tarcker-btn-default tarcker-btn-danger tarcker-btn-sm" href="javascript:;">remove</a></li>');
+			//$('#save-page').append('<li><a class="load-page" href="javascript:;">'+url+'</a><a data-url="'+url+'" class="remove-save-page tarcker-btn-default tarcker-btn-danger tarcker-btn-sm" href="javascript:;">remove</a></li>');
 			initClickSavePage();
 			initRemove();
-			
-			// $(document).on('click','.load-page', function(){
-				// var newurl = $(this).html();
-				// chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-					// chrome.tabs.update(tabs[0].id, {url: newurl});
-				// });
-			// });
-			
-			// $(document).on('click','.remove-save-page', function(){
-				// var url = $(this).attr('data-url');
-				// $(this).parents('li').remove();
-				// var c = _cookie('trackers-save-page').split('||');
-				// var index = c.indexOf(url);
-				
-				// if (index > -1) {
-					// c.splice(index, 1);
-					// _cookie('trackers-save-page',c.join('||'));
-				// }
-			// });
+			$('.no-activity').hide();
+			$('.page-saved-container').show();
 		});
 	});
     $(document).on('click','#trkr-tbl-container input[type=text]',function(){ this.select(); });

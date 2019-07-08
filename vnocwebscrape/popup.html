@@ -3,14 +3,25 @@
 <link rel="stylesheet" href="custom.css">
 <script src="jquery-3.3.1.js"></script>
 </head>
-<body style="tracker-body">
+<body class="tracker-body">
     <div class="trkr-tracker-box">
         <h3>VNOC Trackers Tool</h3>
 		<button class="tracker-btn" id="startwebcrape" title="Start">Start</button>
+		<div class="howto-container">
+			<a href="" class="howto" target="_blank">
+				how to?
+			</a>
+		</div>
         <script src="popup.js"></script>		
     </div>
     <div class="tracker-result-main-container">
-		<div class="page-saved-container">
+    	<div class="no-activity">
+    		<h3>
+    			Save this page for future tracking.
+    		</h3>
+    		<img class="vert-move" src="https://cdn.vnoc.com/icons/trackers/download.png" alt="">
+    	</div>
+		<div class="page-saved-container" style="display: none;">
 			<h3 class="section-title-trackers">Page saved</h3>
 			<ol id="save-page" class="tracker-list-unstyled"></ol>		
 		</div>	

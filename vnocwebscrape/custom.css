@@ -582,3 +582,38 @@ body.tracker-body *::before,
 body.tracker-body{
     box-sizing: border-box;
 }
+.no-activity{
+    text-align: center;
+}
+.no-activity img{
+    display: inline-block;
+    max-width: 100%;
+}
+img.vert-move {
+    -webkit-animation: mover 1s infinite  alternate;
+    animation: mover 1s infinite  alternate;
+}
+img.vert-move {
+    -webkit-animation: mover 1s infinite  alternate;
+    animation: mover 1s infinite  alternate;
+}
+@-webkit-keyframes mover {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-10px); }
+}
+@keyframes mover {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-10px); }
+}
+.howto-container{
+    display: block;
+    padding-top: 5px;
+}
+.howto{
+    display: inline-block;
+    font-size: 12px;
+    color: #ddd;
+    opacity: 0.8;
+    text-decoration: none;
+    text-transform: lowercase;
+}
