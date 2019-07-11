@@ -60,8 +60,18 @@ if($('#trkr-selector').length==0){
 	
 	var tbl = ('<div id="trkr-tbl-container">'+
 	'<h3 class="section-title-trackers">Tracker Scrape Result</h3>'+
+	'<label class="radiocontainer">VNOC'+
+	'<input class="proceed" value="https://manage.vnoc.com/research/tool" type="radio" checked="checked" name="radio">'+
+	'<span class="checkmark"></span>'+
+	'</label>'+
+	'<label class="radiocontainer" style="margin-left:40px">Tracker.com'+
+	'<input class="proceed" value="https://trackers.com/dashboard" type="radio" name="radio">'+
+	'<span class="checkmark"></span>'+
+	'</label>'+
+	'<br>'+
 	'<a id="btn-export-row" href="javascript:;" class="tarcker-btn-default tarcker-btn-primary mr-1">Export to CSV</a>'+
-	'<button class="tarcker-btn-default tarcker-btn-primary trkr-btn-proceed trkr-btn-tbl mx-1">Proceed to Research</button>'+	
+	'<button class="tarcker-btn-default tarcker-btn-primary trkr-btn-proceed trkr-btn-tbl mx-1">Proceed to Research</button>'+
+	
 	'<button class="trkr-btn-tbl tarcker-btn-default tarcker-btn-danger trkr-btn-remove ml-1">Delete Selected</button>'+
 	'<form id="trkr-frmprocess" method="POST" action="https://manage.vnoc.com/research/tool" target="_blank">'+			
 	'</form>'+
@@ -69,7 +79,7 @@ if($('#trkr-selector').length==0){
 	'</div>');
 	
 	
-	
+	console.log(document.getElementById('notifyvnoc'));
 	if(document.getElementById('notifyvnoc')==undefined){
 		var css = '<style>.trkr-popup{z-index:99999;position:fixed;left:0;top:0;height:100%;width:450px;background-color:transparent;;opacity:0;visibility:hidden;-webkit-transition:opacity .3s 0s,visibility 0 .3s;-moz-transition:opacity .3s 0s,visibility 0 .3s;transition:opacity .3s 0s,visibility 0 .3s}.trkr-popup.is-visible{opacity:1;visibility:visible;-webkit-transition:opacity .3s 0s,visibility 0 0;-moz-transition:opacity .3s 0s,visibility 0 0;transition:opacity .3s 0s,visibility 0 0}.trkr-popup-container{overflow:auto;height: 70%;position:relative;margin:4em auto;background:#FFF;border-radius:.25em .25em .4em .4em;text-align:center;box-shadow:0 0 20px rgba(0,0,0,0.2);-webkit-transform:translateY(-40px);-moz-transform:translateY(-40px);-ms-transform:translateY(-40px);-o-transform:translateY(-40px);transform:translateY(-40px);-webkit-backface-visibility:hidden;-webkit-transition-property:-webkit-transform;-moz-transition-property:-moz-transform;transition-property:transform;-webkit-transition-duration:.3s;-moz-transition-duration:.3s;transition-duration:.3s}.trkr-popup-container p{padding:3em 1em}.trkr-popup-container .cd-buttons:after{content:"";display:table;clear:both}.trkr-popup-container .cd-buttons li{float:left;width:50%}.trkr-popup-container .cd-buttons a{display:block;height:60px;line-height:60px;text-transform:uppercase;color:#FFF;-webkit-transition:background-color .2s;-moz-transition:background-color .2s;transition:background-color .2s}.trkr-popup-container .cd-buttons li:first-child a{background:#fc7169;border-radius:0 0 0 .25em}.no-touch .trkr-popup-container .cd-buttons li:first-child a:hover{background-color:#fc8982}.trkr-popup-container .cd-buttons li:last-child a{background:#b6bece;border-radius:0 0 .25em 0}.no-touch .trkr-popup-container .cd-buttons li:last-child a:hover{background-color:#c5ccd8}.trkr-popup-container .trkr-popup-close{position:absolute;top:8px;right:8px;width:30px;height:30px}.trkr-popup-container .trkr-popup-close::before,.trkr-popup-container .trkr-popup-close::after{content:"";position:absolute;top:12px;width:14px;height:3px;background-color:#8f9cb5}.trkr-popup-container .trkr-popup-close::before{-webkit-transform:rotate(45deg);-moz-transform:rotate(45deg);-ms-transform:rotate(45deg);-o-transform:rotate(45deg);transform:rotate(45deg);left:8px}.trkr-popup-container .trkr-popup-close::after{-webkit-transform:rotate(-45deg);-moz-transform:rotate(-45deg);-ms-transform:rotate(-45deg);-o-transform:rotate(-45deg);transform:rotate(-45deg);right:8px}.is-visible .trkr-popup-container{-webkit-transform:translateY(0);-moz-transform:translateY(0);-ms-transform:translateY(0);-o-transform:translateY(0);transform:translateY(0)}</style>';
 		var html = '<div id="notifyvnoc" class="trkr-popup" role="alert">	<div  class="trkr-popup-container"><div id="notifyvnocmsg">'+tbl+'</div><ul class="cd-buttons"></ul><a href="#0" class="trkr-popup-close img-replace">&nbsp;</a></div></div>';

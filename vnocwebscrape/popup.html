@@ -5,7 +5,7 @@
 </head>
 <body class="tracker-body">
     <div class="trkr-tracker-box">
-        <h3>VNOC Trackers Tool</h3>
+        <h3>Trackers Tool</h3>
 		<button class="tracker-btn" id="startwebcrape" title="Start">Start</button>
 		<div class="howto-container">
 			<a href="https://blog.trackers.com" class="howto" target="_blank">
@@ -30,6 +30,15 @@
 				<h3 class="section-title-trackers">Tracker Scrape Result</h3>
 				<a id="btn-export-row" href="javascript:;" class="tarcker-btn-default tarcker-btn-primary mr-1">Export to CSV</a>
 				<button class="tarcker-btn-default tarcker-btn-primary trkr-btn-proceed trkr-btn-tbl mx-1">Proceed to Research</button>
+				
+				<div class="custom-select" style="width:200px;">
+				  <select>
+					<option value="0">Proceed to Research:</option>
+					<option value="1">Tracker.com</option>
+					<option value="2">VNOC</option>
+				  </select>
+				</div>
+				
 				<button class="trkr-btn-tbl tarcker-btn-default tarcker-btn-danger trkr-btn-remove ml-1">Delete Selected</button>
 				<form id="trkr-frmprocess" method="POST" action="https://manage.vnoc.com/research/tool" target="_blank"></form>
 				<table border="1" id="trkr-result" class="tracker-table-scrape"></table>

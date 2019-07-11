@@ -30,7 +30,10 @@ document.getElementById("startwebcrape").addEventListener('click', () => {
 function setTable(info) {
 	if(info == undefined) window.location.reload();
 	document.getElementById('trkr-container_result').innerHTML =  info;
-	if($('#trkr-result tr').length>1) $('#trkr-container_result').show();
+	if($('#trkr-result tr').length>1){
+		$('#trkr-container_result').show();
+		$('.no-activity').hide();
+	}
 	else $('#trkr-container_result').hide();
 }
 
@@ -303,6 +306,7 @@ $(document).ready(function() {
 			alert('Please select column for research');
 			return false;
 		}else{
+			jQuery('#trkr-frmprocess').attr('action',jQuery('.proceed:checked').val());
 			jQuery('#trkr-frmprocess').submit();
 		}
 	});
