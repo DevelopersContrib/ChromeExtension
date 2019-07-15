@@ -196,6 +196,7 @@ $(document).ready(function() {
 					val = uniqueUrl.join('||');
 					setCookies(val);
 				}else{
+					$('#save-page').append('<li><a class="load-page" href="javascript:;">'+url+'</a>&nbsp;<a data-url="'+url+'" class="remove-save-page tarcker-btn-default tarcker-btn-danger tarcker-btn-sm" href="javascript:;">remove</a></li>');
 					setCookies(url);
 				}
 			});
