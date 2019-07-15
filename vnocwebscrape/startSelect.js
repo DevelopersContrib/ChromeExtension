@@ -114,7 +114,7 @@ $("body").on("click",function() {
 			message:  'Retrieving data from github.com',
 		priority: 0});*/
 		
-	}else if(window.location.hostname=="medium.com" && window.location.href.indexOf('followers')==-1 && window.location.href.indexOf('following')==-1){
+	}/*else if(window.location.hostname=="medium.com" && window.location.href.indexOf('followers')==-1 && window.location.href.indexOf('following')==-1){
 		var rowVal = [];
 		var finalEl = $(".js-recommendList").find(".u-flex1");//a.link--overlay[data-action='show-user-card']");
 		
@@ -147,7 +147,7 @@ $("body").on("click",function() {
 			subject: 'Done',
 			rows:rowVal.length
 		});
-	}else{
+	}*/else{
 		process2();	
 	}
 
