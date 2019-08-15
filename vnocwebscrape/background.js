@@ -62,23 +62,19 @@ chrome.runtime.onMessage.addListener(function (msg, sender) {
 			}
 		});
 		
-		chrome.notifications.create({
-			type:     'basic',
-			iconUrl:  'icon.png',
-			title:    'Trackers',
-			message:  'Copied - "'+msg.text+'"',
-			/*buttons: [
-				{title: 'button.'}
-			],*/
-		priority: 0});
+		// chrome.notifications.create({
+			// type:     'basic',
+			// iconUrl:  'icon.png',
+			// title:    'Trackers',
+			// message:  'Copied - "'+msg.text+'"'
+		// priority: 0});
 		
 	}else if((msg.from === 'loading') && (msg.subject === 'loading')) {	
-		chrome.notifications.create({
-			type:     'basic',
-			iconUrl:  'icon.png',
-			title:    'Trackers',
-			message:  'Retrieving data from github.com',
-		priority: 0});
+		//notify('Processing, Please wait');
+		
+		chrome.browserAction.setBadgeText({text: 'Wait'});
+		chrome.tabs.executeScript({file: "loading.js"});
+		
 	}else if((msg.from === 'startSelect') && (msg.subject === 'Done')) {
 		var _rows = msg.rows;
 		
@@ -98,10 +94,12 @@ chrome.runtime.onMessage.addListener(function (msg, sender) {
 			iconUrl:  'icon.png',
 			title:    'Trackers',
 			message:  _rows+' rows selected',
-			/*buttons: [
-				{title: 'button.'}
-			],*/
+			// buttons: [
+				// {title: 'button.'}
+			// ],
 		priority: 0});
+		chrome.notifications.clear('githubpost');
+		chrome.tabs.executeScript({file: "done.js"});
 	}else if((msg.from === 'startSelect') && (msg.subject === 'Cancel')) {
 		chrome.tabs.query({active: true, currentWindow: true}, function(tabs){
 			chrome.storage.sync.get(['count'], function(item) {
@@ -121,3 +119,30 @@ chrome.runtime.onMessage.addListener(function (msg, sender) {
 		});
 	}
 });
+
+function notify(message, image) {
+	chrome.notifications.create('githubpost',{
+		type: 'progress',
+		iconUrl: 'icon.png',
+		title: 'Trackers',
+		contextMessage: 'Retrieving data from Github.com',
+		//message: 'Processing, Please wait',
+		message:message,
+		progress: 1
+	}, function(id) {
+		var progress = 1;
+
+		var interval = setInterval(function(){
+			progress++;
+			if (progress <= 100) {
+				chrome.notifications.update('githubpost', {progress: progress}, function(updated) {
+					if (!updated) {
+						clearInterval(interval);
+					}
+				});
+			} else {
+				clearInterval(interval);
+			}
+		},5000);
+	});
+}

@@ -3,10 +3,12 @@ document.getElementById("startwebcrape").addEventListener('click', () => {
 	
     if (elem.innerHTML=="Start"){
 		elem.innerHTML="End";
+		document.getElementById("selectelem").style.display = "block";
 		chrome.tabs.executeScript({file: "startSelect.js"});
 		chrome.browserAction.setBadgeText({text: 'Start'});
     }else {
 		elem.innerHTML ="Start";
+		document.getElementById("selectelem").style.display = "none";
 		chrome.tabs.executeScript({file: "endSelect.js"});
 		
 		chrome.tabs.query({active: true, currentWindow: true}, function(tabs){
