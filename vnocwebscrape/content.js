@@ -65,7 +65,7 @@ if($('#trkr-selector').length==0){
 	'<span class="checkmark"></span>'+
 	'</label>'+
 	'<label class="radiocontainer" style="margin-left:40px">Tracker.com'+
-	'<input class="proceed" value="https://trackers.com/dashboard" type="radio" name="radio">'+
+	'<input class="proceed" value="https://webtrackers.com/dashboard" type="radio" name="radio">'+
 	'<span class="checkmark"></span>'+
 	'</label>'+
 	'<br>'+
