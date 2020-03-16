@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <meta charset=utf-8>
+      <title>Medium Trackers</title>
+      <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+      <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/handsontable/0.31.1/handsontable.full.min.css">
+      <link rel="stylesheet" type="text/css" href="popup.css">
+  </head>
+  <body>
+	  <div id="wait">
+          <h1 id="waitHeader">Please wait...</h1>
+          <div id="noResponseErr" class="alert alert-danger"></div>
+          <img src="logo.png" id="wait-spider"/>
+      </div>
+      <div id="content">
+          <div class="col-xs-4">
+              <button type="button" class="btn btn-default btn-block" id='wrongTable'>Try another table</button>
+              <button type="button" class="btn btn-primary btn-block" id='nextButton'>Locate "Next" button</button>
+
+
+              <button type="button" class="btn btn-primary btn-block" id='startScraping'>Start crawling</button>
+              <button type="button" class="btn btn-default btn-block" id='stopScraping'>Stop crawling</button>
+
+              <div id="infinateScrollElement">
+                  <input type="checkbox" id="infinateScroll">
+                  <label for="infinateScroll" id="infinateScrollLabel">Infinite scroll</label>
+              </div>
+
+              <form class="btn-block">
+                  <div class="input-group btn-block">
+                      <span class="input-group-addon">Min delay</span>
+                      <input id='crawlDelay' type='number' value='1' class="form-control" />
+                      <span class="input-group-addon">sec</span>
+                  </div>
+                  <div class="input-group btn-block">
+                      <span class="input-group-addon">Max delay</span>
+                      <input id='maxWait' type='number' value='20' class="form-control" />
+                      <span class="input-group-addon">sec</span>
+                  </div>
+             </form>
+          </div>
+          <div class="col-xs-4">
+              <button type="button" class="btn btn-success download-button  btn-block" id='csv'><span class="glyphicon glyphicon-download-alt"></span> CSV</button><br>
+              <button type="button" class="btn btn-success download-button  btn-block" id='xlsx'><span class="glyphicon glyphicon-download-alt"></span> XLSX</button>
+			  <br>
+			  <button class="btn btn-success download-button  btn-block tarcker-btn-default tarcker-btn-primary trkr-btn-proceed trkr-btn-tbl mx-1">Proceed to Research</button>
+				
+				<div class="custom-select" style="width:200px;">
+				  
+	<label class="radiocontainer">VNOC
+	<input class="proceed" value="https://manage.vnoc.com/research/tool" type="radio" checked="checked" name="radio">
+	<span class="checkmark"></span>
+	</label>
+	<label class="radiocontainer" style="margin-left:40px">Tracker.com
+	<input class="proceed" value="https://webtrackers.com/dashboard" type="radio" name="radio">
+	<span class="checkmark"></span>
+	</label>
+	
+				</div>
+			  <form id="trkr-frmprocess" method="POST" action="https://manage.vnoc.com/research/tool" target="_blank" style="display:none;"></form>
+			  
+              <button type="button" class="btn btn-warning btn-block" id='resetColumns'>Reset columns</button>
+          </div>
+          <div class="col-xs-4">
+              <a href="javascript:;" class="btn btn-success btn-sm btn-block" id="savetwitter" target="_blank">
+				<span class="glyphicon glyphicon-floppy-save"></span> Save and Process Twitter Url
+			  </a>
+              <div id="stats"></div>
+          </div>
+          <div class="col-xs-12" id="info">
+               <div class="alert alert-danger" id="error"></div>
+               <div class="alert alert-warning" id="inputError"></div>
+               <div class="alert alert-warning" id="finished"></div>
+               <div class="alert alert-warning" id="previewLimit"></div>
+               <div class="alert alert-info" id="instructions"></div>
+          </div>
+          <div class="col-xs-12">
+              <div id="hot" class="hot handsontable htRowHeaders htColumnHeaders"></div>
+          </div>
+      </div>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/4.1.2/papaparse.min.js"></script>
+      <script
+			  src="https://code.jquery.com/jquery-3.1.1.min.js"
+			  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+			  crossorigin="anonymous"></script>
+      <script src="js/FileSaver.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/handsontable/0.31.1/handsontable.full.min.js"></script>
+
+      <script src="js/xlsx.full.min.js"></script>
+      <script src="popup.js"></script>
+	  <script>
+	  
+	
+	  </script>
+  </body>
+
+</html>

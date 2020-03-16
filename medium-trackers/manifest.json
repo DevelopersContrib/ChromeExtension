@@ -1,0 +1,27 @@
+{
+  "name": "MediumTracker",
+  "version": "1.0.2",
+  "manifest_version": 2,
+  "description": "MediumTracker",
+  "browser_action": {
+    "default_icon": "icon16.png"
+  },
+  "permissions": [ "activeTab", "tabs", "webRequest", "<all_urls>"],
+  "content_security_policy": "script-src 'self' https://code.jquery.com https://cdnjs.cloudflare.com https://fastcdn.org https://maxcdn.bootstrapcdn.com; object-src 'self'",
+  "icons": {
+    "16": "icon16.png",
+    "32": "icon32.png",
+    "64": "icon64.png",
+    "128": "icon128.png"
+  },
+  "background": {
+      "scripts": ["background.js"]
+  },
+  "content_scripts": [
+    {
+      "matches": 	["http://*/*", "https://*/*"],
+      "css": ["onload.css"],
+      "js": ["js/jquery-3.1.0.min.js", "js/sha256.min.js", "onload.js"]
+    }
+  ]
+}
